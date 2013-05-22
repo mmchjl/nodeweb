@@ -1,0 +1,90 @@
+Time:2013-05-20 23:43:35
+Error: Redis connection to 127.0.0.1:6379 failed - connect ECONNREFUSED
+    at RedisClient.on_error (C:\Program Files\nodejs\node_modules\redis\index.js:151:24)
+    at Socket.<anonymous> (C:\Program Files\nodejs\node_modules\redis\index.js:86:14)
+    at Socket.EventEmitter.emit (events.js:96:17)
+    at Socket._destroy.self.errorEmitted (net.js:328:14)
+    at process.startup.processNextTick.process._tickCallback (node.js:244:9)
+
+Time:2013-05-20 23:43:36
+Error: Redis connection to 127.0.0.1:6379 failed - connect ECONNREFUSED
+    at RedisClient.on_error (C:\Program Files\nodejs\node_modules\redis\index.js:151:24)
+    at Socket.<anonymous> (C:\Program Files\nodejs\node_modules\redis\index.js:86:14)
+    at Socket.EventEmitter.emit (events.js:96:17)
+    at Socket._destroy.self.errorEmitted (net.js:328:14)
+    at process.startup.processNextTick.process._tickCallback (node.js:244:9)
+
+Time:2013-05-20 23:43:38
+Error: Redis connection to 127.0.0.1:6379 failed - connect ECONNREFUSED
+    at RedisClient.on_error (C:\Program Files\nodejs\node_modules\redis\index.js:151:24)
+    at Socket.<anonymous> (C:\Program Files\nodejs\node_modules\redis\index.js:86:14)
+    at Socket.EventEmitter.emit (events.js:96:17)
+    at Socket._destroy.self.errorEmitted (net.js:328:14)
+    at process.startup.processNextTick.process._tickCallback (node.js:244:9)
+
+Time:2013-05-20 23:43:39
+Error: Redis connection to 127.0.0.1:6379 failed - connect ECONNREFUSED
+    at RedisClient.on_error (C:\Program Files\nodejs\node_modules\redis\index.js:151:24)
+    at Socket.<anonymous> (C:\Program Files\nodejs\node_modules\redis\index.js:86:14)
+    at Socket.EventEmitter.emit (events.js:96:17)
+    at Socket._destroy.self.errorEmitted (net.js:328:14)
+    at process.startup.processNextTick.process._tickCallback (node.js:244:9)
+
+Time:2013-05-20 23:43:42
+Error: Redis connection to 127.0.0.1:6379 failed - connect ECONNREFUSED
+    at RedisClient.on_error (C:\Program Files\nodejs\node_modules\redis\index.js:151:24)
+    at Socket.<anonymous> (C:\Program Files\nodejs\node_modules\redis\index.js:86:14)
+    at Socket.EventEmitter.emit (events.js:96:17)
+    at Socket._destroy.self.errorEmitted (net.js:328:14)
+    at process.startup.processNextTick.process._tickCallback (node.js:244:9)
+
+Time:2013-05-20 23:43:45
+Error: Redis connection to 127.0.0.1:6379 failed - connect ECONNREFUSED
+    at RedisClient.on_error (C:\Program Files\nodejs\node_modules\redis\index.js:151:24)
+    at Socket.<anonymous> (C:\Program Files\nodejs\node_modules\redis\index.js:86:14)
+    at Socket.EventEmitter.emit (events.js:96:17)
+    at Socket._destroy.self.errorEmitted (net.js:328:14)
+    at process.startup.processNextTick.process._tickCallback (node.js:244:9)
+
+Time:2013-05-20 23:43:49
+Error: Redis connection to 127.0.0.1:6379 failed - connect ECONNREFUSED
+    at RedisClient.on_error (C:\Program Files\nodejs\node_modules\redis\index.js:151:24)
+    at Socket.<anonymous> (C:\Program Files\nodejs\node_modules\redis\index.js:86:14)
+    at Socket.EventEmitter.emit (events.js:96:17)
+    at Socket._destroy.self.errorEmitted (net.js:328:14)
+    at process.startup.processNextTick.process._tickCallback (node.js:244:9)
+
+Time:2013-05-20 23:43:57
+Error: Redis connection to 127.0.0.1:6379 failed - connect ECONNREFUSED
+    at RedisClient.on_error (C:\Program Files\nodejs\node_modules\redis\index.js:151:24)
+    at Socket.<anonymous> (C:\Program Files\nodejs\node_modules\redis\index.js:86:14)
+    at Socket.EventEmitter.emit (events.js:96:17)
+    at Socket._destroy.self.errorEmitted (net.js:328:14)
+    at process.startup.processNextTick.process._tickCallback (node.js:244:9)
+
+Time:2013-05-20 23:52:14
+Error: Can't render headers after they are sent to the client.
+    at ServerResponse.OutgoingMessage._renderHeaders (http.js:687:11)
+    at ServerResponse.writeHead (http.js:951:20)
+    at _handler.validata (C:\Program Files\nodejs\mynode\nodeweb\handleapp\captcha.js:58:22)
+    at Object._handler.validata (C:\Program Files\nodejs\mynode\nodeweb\handleapp\captcha.js:57:9)
+    at Object.handle (C:\Program Files\nodejs\mynode\nodeweb\handleapp\captcha.js:20:33)
+    at Object.handle (C:\Program Files\nodejs\mynode\nodeweb\handler.js:38:20)
+    at header.<anonymous> (C:\Program Files\nodejs\mynode\nodeweb\route.js:85:13)
+    at header.EventEmitter.emit (events.js:99:17)
+    at header.<anonymous> (C:\Program Files\nodejs\mynode\nodeweb\route.js:63:18)
+    at Object.getSession (C:\Program Files\nodejs\mynode\nodeweb\lib\session.js:38:13)
+
+Time:2013-05-20 23:52:31
+Error: Can't render headers after they are sent to the client.
+    at ServerResponse.OutgoingMessage._renderHeaders (http.js:687:11)
+    at ServerResponse.writeHead (http.js:951:20)
+    at _handler.validata (C:\Program Files\nodejs\mynode\nodeweb\handleapp\captcha.js:58:22)
+    at Object._handler.validata (C:\Program Files\nodejs\mynode\nodeweb\handleapp\captcha.js:57:9)
+    at Object.handle (C:\Program Files\nodejs\mynode\nodeweb\handleapp\captcha.js:20:33)
+    at Object.handle (C:\Program Files\nodejs\mynode\nodeweb\handler.js:38:20)
+    at header.<anonymous> (C:\Program Files\nodejs\mynode\nodeweb\route.js:85:13)
+    at header.EventEmitter.emit (events.js:99:17)
+    at header.<anonymous> (C:\Program Files\nodejs\mynode\nodeweb\route.js:63:18)
+    at Object.getSession (C:\Program Files\nodejs\mynode\nodeweb\lib\session.js:38:13)
+

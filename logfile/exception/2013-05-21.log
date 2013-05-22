@@ -1,0 +1,207 @@
+Time:2013-05-21 09:07:53
+Error: Can't render headers after they are sent to the client.
+    at ServerResponse.OutgoingMessage._renderHeaders (http.js:687:11)
+    at ServerResponse.writeHead (http.js:951:20)
+    at _handler.piccaptcha (C:\Program Files\nodejs\node\nodeweb\nodeweb\handleapp\captcha.js:78:26)
+    at fs.readFile (fs.js:176:14)
+    at Object.oncomplete (fs.js:297:15)
+
+Time:2013-05-21 09:07:53
+Error: Can't render headers after they are sent to the client.
+    at ServerResponse.OutgoingMessage._renderHeaders (http.js:687:11)
+    at ServerResponse.writeHead (http.js:951:20)
+    at _handler.piccaptcha (C:\Program Files\nodejs\node\nodeweb\nodeweb\handleapp\captcha.js:78:26)
+    at fs.readFile (fs.js:176:14)
+    at Object.oncomplete (fs.js:297:15)
+
+Time:2013-05-21 09:07:53
+Error: Can't render headers after they are sent to the client.
+    at ServerResponse.OutgoingMessage._renderHeaders (http.js:687:11)
+    at ServerResponse.writeHead (http.js:951:20)
+    at _handler.piccaptcha (C:\Program Files\nodejs\node\nodeweb\nodeweb\handleapp\captcha.js:78:26)
+    at fs.readFile (fs.js:176:14)
+    at Object.oncomplete (fs.js:297:15)
+
+Time:2013-05-21 09:07:53
+Error: Can't render headers after they are sent to the client.
+    at ServerResponse.OutgoingMessage._renderHeaders (http.js:687:11)
+    at ServerResponse.writeHead (http.js:951:20)
+    at _handler.piccaptcha (C:\Program Files\nodejs\node\nodeweb\nodeweb\handleapp\captcha.js:78:26)
+    at fs.readFile (fs.js:176:14)
+    at Object.oncomplete (fs.js:297:15)
+
+Time:2013-05-21 09:08:18
+Error: Can't render headers after they are sent to the client.
+    at ServerResponse.OutgoingMessage._renderHeaders (http.js:687:11)
+    at ServerResponse.writeHead (http.js:951:20)
+    at _handler.piccaptcha (C:\Program Files\nodejs\node\nodeweb\nodeweb\handleapp\captcha.js:78:26)
+    at fs.readFile (fs.js:176:14)
+    at Object.oncomplete (fs.js:297:15)
+
+Time:2013-05-21 09:08:18
+Error: Can't render headers after they are sent to the client.
+    at ServerResponse.OutgoingMessage._renderHeaders (http.js:687:11)
+    at ServerResponse.writeHead (http.js:951:20)
+    at _handler.piccaptcha (C:\Program Files\nodejs\node\nodeweb\nodeweb\handleapp\captcha.js:78:26)
+    at fs.readFile (fs.js:176:14)
+    at Object.oncomplete (fs.js:297:15)
+
+Time:2013-05-21 09:08:18
+Error: Can't render headers after they are sent to the client.
+    at ServerResponse.OutgoingMessage._renderHeaders (http.js:687:11)
+    at ServerResponse.writeHead (http.js:951:20)
+    at _handler.piccaptcha (C:\Program Files\nodejs\node\nodeweb\nodeweb\handleapp\captcha.js:78:26)
+    at fs.readFile (fs.js:176:14)
+    at Object.oncomplete (fs.js:297:15)
+
+Time:2013-05-21 09:08:18
+Error: Can't render headers after they are sent to the client.
+    at ServerResponse.OutgoingMessage._renderHeaders (http.js:687:11)
+    at ServerResponse.writeHead (http.js:951:20)
+    at _handler.piccaptcha (C:\Program Files\nodejs\node\nodeweb\nodeweb\handleapp\captcha.js:78:26)
+    at fs.readFile (fs.js:176:14)
+    at Object.oncomplete (fs.js:297:15)
+
+Time:2013-05-21 09:18:54
+Error: Can't render headers after they are sent to the client.
+    at ServerResponse.OutgoingMessage._renderHeaders (http.js:687:11)
+    at ServerResponse.writeHead (http.js:951:20)
+    at _handler.validata (C:\Program Files\nodejs\node\nodeweb\nodeweb\handleapp\captcha.js:58:22)
+    at Object._handler.validata (C:\Program Files\nodejs\node\nodeweb\nodeweb\handleapp\captcha.js:57:9)
+    at Object.handle (C:\Program Files\nodejs\node\nodeweb\nodeweb\handleapp\captcha.js:20:33)
+    at Object.handle (C:\Program Files\nodejs\node\nodeweb\nodeweb\handler.js:38:20)
+    at header.<anonymous> (C:\Program Files\nodejs\node\nodeweb\nodeweb\route.js:85:13)
+    at header.EventEmitter.emit (events.js:99:17)
+    at header.session.getSession.session (C:\Program Files\nodejs\node\nodeweb\nodeweb\route.js:72:25)
+    at Object.getSession (C:\Program Files\nodejs\node\nodeweb\nodeweb\lib\session.js:38:13)
+
+Time:2013-05-21 09:22:36
+Error: Can't render headers after they are sent to the client.
+    at ServerResponse.OutgoingMessage._renderHeaders (http.js:687:11)
+    at ServerResponse.writeHead (http.js:951:20)
+    at _handler.validata (C:\Program Files\nodejs\node\nodeweb\nodeweb\handleapp\captcha.js:58:22)
+    at Object._handler.validata (C:\Program Files\nodejs\node\nodeweb\nodeweb\handleapp\captcha.js:57:9)
+    at Object.handle (C:\Program Files\nodejs\node\nodeweb\nodeweb\handleapp\captcha.js:20:33)
+    at Object.handle (C:\Program Files\nodejs\node\nodeweb\nodeweb\handler.js:38:20)
+    at header.<anonymous> (C:\Program Files\nodejs\node\nodeweb\nodeweb\route.js:85:13)
+    at header.EventEmitter.emit (events.js:99:17)
+    at header.session.getSession.session (C:\Program Files\nodejs\node\nodeweb\nodeweb\route.js:72:25)
+    at Object.getSession (C:\Program Files\nodejs\node\nodeweb\nodeweb\lib\session.js:38:13)
+
+Time:2013-05-21 09:46:14
+TypeError: Cannot read property 'aBuffer' of undefined
+    at _handler.validata (C:\Program Files\nodejs\node\nodeweb\nodeweb\handleapp\captcha.js:64:39)
+    at Object._handler.validata (C:\Program Files\nodejs\node\nodeweb\nodeweb\handleapp\captcha.js:60:9)
+    at Object.handle (C:\Program Files\nodejs\node\nodeweb\nodeweb\handleapp\captcha.js:20:33)
+    at Object.handle (C:\Program Files\nodejs\node\nodeweb\nodeweb\handler.js:38:20)
+    at header.<anonymous> (C:\Program Files\nodejs\node\nodeweb\nodeweb\route.js:85:13)
+    at header.EventEmitter.emit (events.js:99:17)
+    at header.session.getSession.session (C:\Program Files\nodejs\node\nodeweb\nodeweb\route.js:72:25)
+    at Object.getSession (C:\Program Files\nodejs\node\nodeweb\nodeweb\lib\session.js:38:13)
+    at header.<anonymous> (C:\Program Files\nodejs\node\nodeweb\nodeweb\route.js:69:24)
+    at Object.getSession (C:\Program Files\nodejs\node\nodeweb\nodeweb\lib\session.js:38:13)
+
+Time:2013-05-21 10:12:28
+TypeError: Cannot read property 'message' of null
+    at Object.handleException (C:\Program Files\nodejs\node\nodeweb\nodeweb\init.js:130:43)
+    at captcha.destory (C:\Program Files\nodejs\node\nodeweb\nodeweb\lib\captcha.js:195:25)
+    at null.<anonymous> (C:\Program Files\nodejs\node_modules\mongodb\lib\mongodb\collection.js:196:9)
+    at g (events.js:192:14)
+    at EventEmitter.emit (events.js:126:20)
+    at Server.Base._callHandler (C:\Program Files\nodejs\node_modules\mongodb\lib\mongodb\connection\base.js:130:25)
+    at Server.connect.connectionPool.on.server._serverState (C:\Program Files\nodejs\node_modules\mongodb\lib\mongodb\connection\server.js:522:20)
+    at MongoReply.parseBody (C:\Program Files\nodejs\node_modules\mongodb\lib\mongodb\responses\mongo_reply.js:132:5)
+    at Server.connect.connectionPool.on.server._serverState (C:\Program Files\nodejs\node_modules\mongodb\lib\mongodb\connection\server.js:481:22)
+    at EventEmitter.emit (events.js:96:17)
+
+Time:2013-05-21 10:42:28
+TypeError: Cannot read property 'message' of null
+    at Object.handleException (C:\Program Files\nodejs\node\nodeweb\nodeweb\init.js:130:43)
+    at captcha.destory (C:\Program Files\nodejs\node\nodeweb\nodeweb\lib\captcha.js:195:25)
+    at null.<anonymous> (C:\Program Files\nodejs\node_modules\mongodb\lib\mongodb\collection.js:196:9)
+    at g (events.js:192:14)
+    at EventEmitter.emit (events.js:126:20)
+    at Server.Base._callHandler (C:\Program Files\nodejs\node_modules\mongodb\lib\mongodb\connection\base.js:130:25)
+    at Server.connect.connectionPool.on.server._serverState (C:\Program Files\nodejs\node_modules\mongodb\lib\mongodb\connection\server.js:522:20)
+    at MongoReply.parseBody (C:\Program Files\nodejs\node_modules\mongodb\lib\mongodb\responses\mongo_reply.js:132:5)
+    at Server.connect.connectionPool.on.server._serverState (C:\Program Files\nodejs\node_modules\mongodb\lib\mongodb\connection\server.js:481:22)
+    at EventEmitter.emit (events.js:96:17)
+
+Time:2013-05-21 11:12:28
+TypeError: Cannot read property 'message' of null
+    at Object.handleException (C:\Program Files\nodejs\node\nodeweb\nodeweb\init.js:130:43)
+    at captcha.destory (C:\Program Files\nodejs\node\nodeweb\nodeweb\lib\captcha.js:195:25)
+    at null.<anonymous> (C:\Program Files\nodejs\node_modules\mongodb\lib\mongodb\collection.js:196:9)
+    at g (events.js:192:14)
+    at EventEmitter.emit (events.js:126:20)
+    at Server.Base._callHandler (C:\Program Files\nodejs\node_modules\mongodb\lib\mongodb\connection\base.js:130:25)
+    at Server.connect.connectionPool.on.server._serverState (C:\Program Files\nodejs\node_modules\mongodb\lib\mongodb\connection\server.js:522:20)
+    at MongoReply.parseBody (C:\Program Files\nodejs\node_modules\mongodb\lib\mongodb\responses\mongo_reply.js:132:5)
+    at Server.connect.connectionPool.on.server._serverState (C:\Program Files\nodejs\node_modules\mongodb\lib\mongodb\connection\server.js:481:22)
+    at EventEmitter.emit (events.js:96:17)
+
+Time:2013-05-21 11:42:28
+TypeError: Cannot read property 'message' of null
+    at Object.handleException (C:\Program Files\nodejs\node\nodeweb\nodeweb\init.js:130:43)
+    at captcha.destory (C:\Program Files\nodejs\node\nodeweb\nodeweb\lib\captcha.js:195:25)
+    at null.<anonymous> (C:\Program Files\nodejs\node_modules\mongodb\lib\mongodb\collection.js:196:9)
+    at g (events.js:192:14)
+    at EventEmitter.emit (events.js:126:20)
+    at Server.Base._callHandler (C:\Program Files\nodejs\node_modules\mongodb\lib\mongodb\connection\base.js:130:25)
+    at Server.connect.connectionPool.on.server._serverState (C:\Program Files\nodejs\node_modules\mongodb\lib\mongodb\connection\server.js:522:20)
+    at MongoReply.parseBody (C:\Program Files\nodejs\node_modules\mongodb\lib\mongodb\responses\mongo_reply.js:132:5)
+    at Server.connect.connectionPool.on.server._serverState (C:\Program Files\nodejs\node_modules\mongodb\lib\mongodb\connection\server.js:481:22)
+    at EventEmitter.emit (events.js:96:17)
+
+Time:2013-05-21 12:12:28
+TypeError: Cannot read property 'message' of null
+    at Object.handleException (C:\Program Files\nodejs\node\nodeweb\nodeweb\init.js:130:43)
+    at captcha.destory (C:\Program Files\nodejs\node\nodeweb\nodeweb\lib\captcha.js:195:25)
+    at null.<anonymous> (C:\Program Files\nodejs\node_modules\mongodb\lib\mongodb\collection.js:196:9)
+    at g (events.js:192:14)
+    at EventEmitter.emit (events.js:126:20)
+    at Server.Base._callHandler (C:\Program Files\nodejs\node_modules\mongodb\lib\mongodb\connection\base.js:130:25)
+    at Server.connect.connectionPool.on.server._serverState (C:\Program Files\nodejs\node_modules\mongodb\lib\mongodb\connection\server.js:522:20)
+    at MongoReply.parseBody (C:\Program Files\nodejs\node_modules\mongodb\lib\mongodb\responses\mongo_reply.js:132:5)
+    at Server.connect.connectionPool.on.server._serverState (C:\Program Files\nodejs\node_modules\mongodb\lib\mongodb\connection\server.js:481:22)
+    at EventEmitter.emit (events.js:96:17)
+
+Time:2013-05-21 12:42:28
+TypeError: Cannot read property 'message' of null
+    at Object.handleException (C:\Program Files\nodejs\node\nodeweb\nodeweb\init.js:130:43)
+    at captcha.destory (C:\Program Files\nodejs\node\nodeweb\nodeweb\lib\captcha.js:195:25)
+    at null.<anonymous> (C:\Program Files\nodejs\node_modules\mongodb\lib\mongodb\collection.js:196:9)
+    at g (events.js:192:14)
+    at EventEmitter.emit (events.js:126:20)
+    at Server.Base._callHandler (C:\Program Files\nodejs\node_modules\mongodb\lib\mongodb\connection\base.js:130:25)
+    at Server.connect.connectionPool.on.server._serverState (C:\Program Files\nodejs\node_modules\mongodb\lib\mongodb\connection\server.js:522:20)
+    at MongoReply.parseBody (C:\Program Files\nodejs\node_modules\mongodb\lib\mongodb\responses\mongo_reply.js:132:5)
+    at Server.connect.connectionPool.on.server._serverState (C:\Program Files\nodejs\node_modules\mongodb\lib\mongodb\connection\server.js:481:22)
+    at EventEmitter.emit (events.js:96:17)
+
+Time:2013-05-21 13:12:28
+TypeError: Cannot read property 'message' of null
+    at Object.handleException (C:\Program Files\nodejs\node\nodeweb\nodeweb\init.js:130:43)
+    at captcha.destory (C:\Program Files\nodejs\node\nodeweb\nodeweb\lib\captcha.js:195:25)
+    at null.<anonymous> (C:\Program Files\nodejs\node_modules\mongodb\lib\mongodb\collection.js:196:9)
+    at g (events.js:192:14)
+    at EventEmitter.emit (events.js:126:20)
+    at Server.Base._callHandler (C:\Program Files\nodejs\node_modules\mongodb\lib\mongodb\connection\base.js:130:25)
+    at Server.connect.connectionPool.on.server._serverState (C:\Program Files\nodejs\node_modules\mongodb\lib\mongodb\connection\server.js:522:20)
+    at MongoReply.parseBody (C:\Program Files\nodejs\node_modules\mongodb\lib\mongodb\responses\mongo_reply.js:132:5)
+    at Server.connect.connectionPool.on.server._serverState (C:\Program Files\nodejs\node_modules\mongodb\lib\mongodb\connection\server.js:481:22)
+    at EventEmitter.emit (events.js:96:17)
+
+Time:2013-05-21 13:42:28
+TypeError: Cannot read property 'message' of null
+    at Object.handleException (C:\Program Files\nodejs\node\nodeweb\nodeweb\init.js:130:43)
+    at captcha.destory (C:\Program Files\nodejs\node\nodeweb\nodeweb\lib\captcha.js:195:25)
+    at null.<anonymous> (C:\Program Files\nodejs\node_modules\mongodb\lib\mongodb\collection.js:196:9)
+    at g (events.js:192:14)
+    at EventEmitter.emit (events.js:126:20)
+    at Server.Base._callHandler (C:\Program Files\nodejs\node_modules\mongodb\lib\mongodb\connection\base.js:130:25)
+    at Server.connect.connectionPool.on.server._serverState (C:\Program Files\nodejs\node_modules\mongodb\lib\mongodb\connection\server.js:522:20)
+    at MongoReply.parseBody (C:\Program Files\nodejs\node_modules\mongodb\lib\mongodb\responses\mongo_reply.js:132:5)
+    at Server.connect.connectionPool.on.server._serverState (C:\Program Files\nodejs\node_modules\mongodb\lib\mongodb\connection\server.js:481:22)
+    at EventEmitter.emit (events.js:96:17)
+

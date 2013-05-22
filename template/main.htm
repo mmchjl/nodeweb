@@ -1,0 +1,152 @@
+﻿<div id="tableframk">
+    <table>
+        <tbody>
+            <tr>
+                <td>
+                    userid
+                </td>
+                <td>
+                    userType
+                </td>
+                <td>
+                    name
+                </td>
+                <td>
+                    account
+                </td>
+                <td>
+                    customAccount
+                </td>
+                <td>
+                    password
+                </td>
+                <td>
+                    customId
+                </td>
+                <td>
+                    accountOA
+                </td>
+                <td>
+                    isEnabled
+                </td>
+                <td>
+                    areaCode
+                </td>
+                <td>
+                    updateTime
+                </td>
+                <td>
+                    adderId
+                </td>
+                <td>
+                    adderTime
+                </td>
+                <td>
+                    relese
+                </td>
+                <td colspan="2">
+                    操作
+                </td>
+            </tr>
+            {#foreach $T.List as user}
+            <tr>
+                <td>
+                    {$T.user.UserId_long}
+                </td>
+                <td>
+                    {#if $T.user.UserType_int==0}管理员{#else}其他{#/if}
+                </td>
+                <td>
+                    {$T.user.Name_str}
+                </td>
+                <td>
+                    {$T.user.Account_str}
+                </td>
+                <td>
+                    {$T.user.CustomAccount_str}
+                </td>
+                <td>
+                    {$T.user.Password_str}
+                </td>
+                <td>
+                    {$T.user.CustomId_long}
+                </td>
+                <td>
+                    {$T.user.AccountOA_str}
+                </td>
+                <td>
+                    <!-- {$T.user.IsEnabled}-->
+                    {#if $T.user.IsEnabled_bool }有效{#else}无效{#/if}
+                </td>
+                <td>
+                    {$T.user.AreaCode_str}
+                </td>
+                <td>
+                    {$T.user.UpdateTime_date}
+                </td>
+                <td>
+                    {$T.user.AdderId_long}
+                </td>
+                <td>
+                    {$T.user.AddTime_date}
+                </td>
+                <td>
+                    {$T.user.Release_bool}
+                </td>
+                <td>
+                    <a opt="delete" userid="{$T.user.UserId}" href="javascript:void()">删除</a>
+                </td>
+                <td>
+                    <a opt="update" userid="{$T.user.UserId}" href="javascript:void()">修改</a>
+                </td>
+            </tr>
+            {#/for}
+            <tr class="addrow mark">
+                <td>
+                    <input type="text" lang="UserId_long" />
+                </td>
+                <td>
+                    <input type="text" lang="UserType_int" />
+                </td>
+                <td>
+                    <input type="text" lang="Name_str" />
+                </td>
+                <td>
+                    <input type="text" lang="Account_str" />
+                </td>
+                <td>
+                    <input type="text" lang="CustomAccount_str" />
+                </td>
+                <td>
+                    <input type="text" lang="Password_str" />
+                </td>
+                <td>
+                    <input type="text" lang="CustomId_long" />
+                </td>
+                <td>
+                    <input type="text" lang="AccountOA_str" />
+                </td>
+                <td>
+                    <input type="text" lang="IsEnabled_bool" />
+                </td>
+                <td>
+                    <input type="text" lang="AreaCode_str" />
+                </td>
+                <td>
+                    <input type="text" lang="UpdateTime_date" />
+                </td>
+                <td>
+                    <input type="text" lang="AdderId_long" />
+                </td>
+                <td>
+                    <input type="text" lang="AddTime_date" />
+                </td>
+                <td>
+                    <input type="text" lang="Release_bool" />
+                </td>
+                <td colspan="2"></td>
+            </tr>
+            <tr><td colspan="16"><button opt="add">添加</button></td></tr>
+        </tbody>
+    </table>
+</div>
