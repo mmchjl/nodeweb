@@ -62,7 +62,7 @@ var runtime = {
     isLogDb:false,
     isOpenUnCaughtException:true,
     basePath:__dirname,
-    sessionMode:0
+    sessionMode:1
 };
 
 var language={

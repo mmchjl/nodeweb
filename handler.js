@@ -15,7 +15,7 @@ function handle(header,response){
 			header.extname="html";
 			header._extname=".html";
 		}
-    console.log("当前请求的ID："+header.session.sessionId);
+    utility.debug("当前请求的ID："+header.session.sessionId);  //sessionId
     //是否开启验证
     if(configuration.config.runtime.isauth&&!header.auth){
         var noauth = "no authority";
@@ -102,7 +102,7 @@ var defaultHandler = {
 			break;
 		}
 	},
-	//��̬�ļ��Ķ�ȡ
+	//静态文件处理
 	staticfile:function(header,response){
 		var _path = "."+header.path;
 		// console.log("request file path:"+_path);

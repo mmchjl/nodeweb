@@ -1,10 +1,10 @@
 ﻿var handler = require("./handler");
 var formidable = require("formidable");
 var querystring = require("querystring");
-var config = require("./config.js").config;
 var path = require("path");
 var util = require("util");
-var event = require("events"),
+var  config = configuration.config,
+    event = require("events"),
     url = require("url"),
     redis = require("./lib/redis.js"),
     session = require("./lib/session.js");
@@ -44,10 +44,11 @@ function header(request,response){
 	this._extname = path.extname(this.baseName);
 	var len = path.extname(this.baseName).length;
 	this.extname = this._extname.indexOf(".")==0?this._extname.substr(1,len):"";
-	this.cookie= request.headers.cookie==undefined?{}:querystring.parse(request.headers.cookie,"; ","=");
+	this.cookie= request.headers.cookie?querystring.parse(request.headers.cookie,"; ","="):{};
     this.session = {};
     this.session.sessionId = this.cookie.sessionId;
     this.auth =false;
+    if(filter(this)) return;
     var first = request.socket.ondata.arguments[0],
         second = request.socket.ondata.arguments[1],
         thrid = request.socket.ondata.arguments[2];
@@ -60,20 +61,25 @@ function header(request,response){
         session.getSession(function(session){
             response.setHeader("Set-Cookie","sessionId="+session.sessionId);
             this.session.session = session.session;
+            this.session.sessionId = session.sessionId;
             this.emit("finish",this,response);
+            utility.debug("path:"+this.path+"：header中不存在sessionId,但已经赋值："+session.sessionId)
         }.bind(this));
-        //this.emit("finish",this,response)
     }else{
        session.getSession(this.session.sessionId,function(__session){
            if(__session==null){
                session.getSession(function(_session){
                    response.setHeader("Set-Cookie","sessionId="+_session.sessionId);
                    this.session.session = _session.session;
+                   this.session.sessionId = _session.sessionId;
+                   utility.debug("path:"+this.path+"：header中存在sessionId，但是服务器端不存在与之对应的session，但已赋值："+_session.sessionId)
                    this.emit("finish",this,response);
                }.bind(this))
            }else{
-             this.session.session = __session.session;
-               this.emit("finish",this,response);
+                this.session.session = __session.session;
+                this.session.sessionId = __session.sessionId;
+                utility.debug("path:"+this.path+"：header 中存在sessionid，同时服务器端有与之对应的session:"+__session.sessionId)
+                this.emit("finish",this,response);
            }
        }.bind(this))
     }

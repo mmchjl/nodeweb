@@ -283,7 +283,10 @@ Array.prototype.Each = function(fun) {
 };
 
 http.OutgoingMessage.prototype.setCookie =function(cookie){
-    //var
+    var name = cookie.key,
+        value = cookie.value,
+        path = cookie.path;
+
 }
 
 function extend(template,target){
