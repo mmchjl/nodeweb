@@ -5,7 +5,8 @@ var mongo = require("./lib/mongodb.js"),
     session = require("./lib/session.js"),
     cantine =require("./handleapp/cantine.js"),
     monitor =require("./handleapp/monitor.js"),
-    captcha = require("./handleapp/captcha.js");
+    captcha = require("./handleapp/captcha.js")
+    area = require("./handleapp/area.js");
 
 
 function handle(header,response){
@@ -15,7 +16,7 @@ function handle(header,response){
 			header.extname="html";
 			header._extname=".html";
 		}
-    utility.debug("当前请求的ID："+header.session.sessionId);  //sessionId
+    //utility.debug("当前请求的ID："+header.session.sessionId);  //sessionId
     //是否开启验证
     if(configuration.config.runtime.isauth&&!header.auth){
         var noauth = "no authority";
@@ -35,14 +36,18 @@ function handle(header,response){
         case "/monitor":
             monitor.handle(header,response);
             break;
-       case "/captcha":
-           captcha.handle(header,response);
+        case "/captcha":
+            captcha.handle(header,response);
+            break;
+        case "/area":
+            area.handle(header,response);
             break;
 		default:
 		defaultHandler.handle(header,response);
 		break;
 	}
     session.setSession(header.session);
+    utility.debug(utility.Format("当前请求处理时间:{0}",((new Date()).getTime()-header.starthandletime.getTime())))
     //是否开启统计
     if(true){
         var opt = {

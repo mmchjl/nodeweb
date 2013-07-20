@@ -1,7 +1,8 @@
-﻿<html xmlns="http://www.w3.org/1999/xhtml">
+﻿<!DOCTYPE html>
+<html lang="en">
 <head>
     <title></title>
-    <link href="css/StyleMain.css" rel="stylesheet" type="text/css" />
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
 
   <!--  <script type="text/javascript" src="http://passport.baidu.com/js/sitedata_bas.js" charset="GBK"></script>
 
@@ -9,171 +10,56 @@
     <script type="text/javascript" src="./js/common.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"> </script>
     <script src="js/jquery-jtemplates.js" type="text/javascript"></script>
+    <script src="js/bootstrap.min.js" type="text/javascript"></script>
+ <!--   <script src="http://ajax.cdnjs.com/ajax/libs/underscore.js/1.1.4/underscore-min.js" type="text/javascript"></script>
+    <script src="http://ajax.cdnjs.com/ajax/libs/backbone.js/0.3.3/backbone-min.js" type="text/javascript"></script>-->
+    <!--<script src="js/backbone-min.js" type="text/javascript"></script>-->
+    <script src="js/init.js" type="text/javascript"></script>
+    <script src="js/myjsfile.js" type="text/javascript"></script>
 
-   <!-- <script src="js/init.js" type="text/javascript"></script>-->
-
-    <style type="text/css">
-        a
-        {
-            text-shadow: 0px 0px 3px #e6e6e6;
-            text-shadow: 0px 0px 3px rgba(230, 230, 230, 0.8);
-        }
-        .select{
-            background-color:indianred;
-            border-radius: 10px;
-            border: 2px solid indianred;
-        }
-    </style>
 
     <script type="text/javascript">
-        function NameSpace(space) {
-            if (space != undefined) {
-                var arr = space.split(".");
-                var evals = "";
-                var ns = "";
-                for (var i = 0; i < arr.length; i++) {
-                    if (i != 0) ns += ".";
-                    evals += "if(" + ns + "!=undefined) " + ns + " = new Object()";
+        Nenglong.Template.G_Route.index={
+            bodyInit:{
+              app:"index",
+              cmd:"bodyInit",
+              content:"body",
+              templateUrl:"./template/index.htm",
+              dataUrl:"./monitor/requeststate"
+            },
+            init: {
+                app: "index",
+                cmd: "init",
+                content: "maincontent",
+                templateUrl: "./template/requeststate.htm",
+                dataUrl:"./monitor/requeststate",
+                params: { },
+                onload: function() {
+                    index.control.init()
+                }
+            },
+            area:{
+                app:"index",
+                cmd:"area",
+                content:"body",
+                templateUrl:"./template/area.htm",
+                dataUrl:"./area/getlist",
+                onload:function(){
+                    area.control.init();
                 }
             }
         }
-        var g = [];
-        function load() {
-            $.get("http://localhost:8080/cantine/getlist?time="+(new Date()).getMilliseconds().toString(), {}, function(data) {
-                data = JSON.parse(data);
-                $.get("./template/main.htm", {}, function(template) {
-                    $("#maincontent").setTemplate(template);
-                    $("#maincontent").processTemplate(data);
 
-                    //初始化控制
-                    $("#maincontent a[opt=delete]").click(function() {
-                        showMsg("确定要删除吗？"
-                        );
-                    });
-
-                    $("#maincontent a[opt=update]").click(function() {
-                        showMsg("确定要修改吗？"
-                        );
-                    });
-
-                    $("button[opt=add]").click(function() {
-                        var $pros = $("tr.addrow input[lang]");
-                        var obj = {};
-                        $pros.each(function(num, target) {
-                            obj[target.getAttribute("lang")] = target.value;
-                        });
-                        $.post("./cantine/add?age=9&name=hjl", obj, function(msg) {
-							alert(msg);
-                            load();
-                        });
-                    });
-
-                });
+        window.onload=function(){
+            NengLongTemplateLoad({
+                app:"index",
+                cmd:"bodyInit"
             });
+            //NenglongPageInit();
         }
-
-        function load2(){
-            $.get("http://localhost:8080/monitor/requeststate?time="+(new Date()).getMilliseconds().toString(), {}, function(data) {
-                data = JSON.parse(data);
-                $.get("./template/requeststate.htm", {}, function(template) {
-                    $("#maincontent").setTemplate(template);
-                    $("#maincontent").processTemplate(data);
-                })
-            })
-        }
-
-        function load3(){
-            $.get("./captcha/getlist?time="+(new Date()).getMilliseconds(),{},function(data){
-                var obj = JSON.parse(data);
-                for(var i =0;i<obj.caary.length;i++){
-                    var $img = $("<img/>");
-                    $img.attr("src",obj.caary[i].url);
-                    $img.click(function(){
-                       var self = $(this);
-                       self.siblings("img").removeClass("select");
-                        self.addClass("select");
-                    });
-                    $("#maincontent").append($img);
-                }
-            })
-        }
-
-        function load4(){
-            $("#btn_validata").click(function(){
-                var vcode = $("#txt_validate").val();
-                $.get("./captcha/validata",{vcode:vcode},function(data){
-                    if(data=="1"){
-                        alert("success");
-                    }else{
-                        alert("failure");
-                        $("#img_validata").attr("src","./captcha/validata2?t="+(new Date()).getMilliseconds());
-                    }
-                });
-            });
-        }
-
-        window.onload = function() {
-            load4();
-           // $("#maincontent").data(arrCity);
-            $("#areasearch_btn").click(function(){
-                 var area = $("#areasearch_txt").val();
-                 var city = "北京市";
-                 var url = "http://api.map.baidu.com/geocoder/v2/?output=json&ak=FF15603e1554d04799839a1df321cf75&city="+city+"&address="+area;
-                 var option={
-                     type:"get",
-                     url:url,
-                     dataType:"jsonp",
-                     jsonpCallback:"back",
-                     success:function(data){
-                         //alert(data);
-                         g.push(data);
-                     },
-                     error:function(err){
-                         //alert(err);
-                         g.push(err);
-                     }
-                 };
-                $.ajax(option);
-            });
-        };
-
-        function showMsg(msg, yesCallback, noCallback) {
-            var $panel = $("#msglayer");
-            $panel.css({ "top": "0" });
-            $("p[msg=msg]", $panel).text(msg);
-            if (yesCallback != undefined && yesCallback instanceof (Function)) {
-                $("span[opt=sure]").click(yesCallback);
-            }
-            if (noCallback != undefined && noCallback instanceof (Function)) {
-                $("span[opt=cancel]").click(noCallback);
-            }
-            $("span[opt]").click(hideLayer);
-        }
-        function hideLayer() {
-            $("#msglayer").css({ "top": "-110%" });
-            $("#msglayer span").each(function() {
-                $(this).unbind("click");
-            });
-        }
-        function back(obj){
-            alert(obj);
-        };
-        //canvas.getContext("2d").drawImage(
     </script>
 
 </head>
-<body>
-    <div id="maincontent">
-    </div>
-    <div id="msglayer">
-        <div class="mainshow">
-            <p msg="msg">
-                fffff</p>
-            <span opt="sure">确定</span> <span opt="cancel">取消</span>
-        </div>
-    </div>
-    <input type="text" width="100px" id="areasearch_txt"/><button id="areasearch_btn" >获取</button><br/>
-<button onclick="load2()" width="100px">change</button>   <br/>
-<img src="./captcha/validata2" id="img_validata"/><input type="text" id="txt_validate"/><button style="width:100px" id="btn_validata">验证</button>
+<body id="body">
 </body>
 </html>

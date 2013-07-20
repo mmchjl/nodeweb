@@ -10,7 +10,8 @@
 var config = require("./config.js").config,
     util =require("util"),
     fs = require("fs"),
-    http = require("http");
+    http = require("http"),
+    crypto = require("crypto");
 /**
  * 对象验证
  * 根据对象的属性来将字符串转化成相应的数据类型
@@ -50,7 +51,11 @@ var config = require("./config.js").config,
                 break;
             case "date":
                 //日期变量,要求格式为yyyy/MM/dd hh:mm
-                obj[pro] =Date.parse(orgObj[pro]);
+                if(isNaN(orgObj[pro])){
+                    obj[pro] =Date.parse(orgObj[pro]);
+                }else{
+                    obj[pro] = parseInt(orgObj[pro]);
+                }
                 break;
         }
     }
@@ -133,7 +138,7 @@ function handleException(err){
 
 function debug(message){
     if(config.runtime.isDebug){
-        if(typeof(message)==String){
+        if(typeof(message)=="string"){
             util.debug(message);
         }else{
             util.debug(util.inspect(message));
@@ -285,8 +290,42 @@ Array.prototype.Each = function(fun) {
 http.OutgoingMessage.prototype.setCookie =function(cookie){
     var name = cookie.key,
         value = cookie.value,
-        path = cookie.path;
+        path = cookie.path?cookie.path:"/",
+        domain = cookie.domain,
+        expire = cookie.expire;
 
+    var _cookie = Format("{0}={1};path={2}",name,value,path);
+    if(domain){
+        _cookie = Format("{0};domain={1}",_cookie,domain);
+    }
+    if(expire){
+        _cookie = Format("{0};expire={1}",_cookie,expire);
+    }
+    this.setHeader("Set-Cookie",_cookie);
+}
+
+http.OutgoingMessage.prototype.endJson=function(obj){
+    if(typeof obj=="object"){
+        this.end(JSON.stringify(obj));
+    }else{
+        this.end(obj);
+    }
+};
+
+http.OutgoingMessage.prototype.wirteJson=function(obj){
+    if(typeof obj=="object"){
+        this.wirte(JSON.stringify(obj));
+    }else{
+        this.wirte(obj);
+    }
+}
+
+function Md5(str,ali,outputFormat){
+    var _ali = ali||"md5";
+    var _outputForamt = outputFormat||"hex";
+     var hash = crypto.createHash(_ali);
+    hash.update(str);
+    return hash.digest(_outputForamt);
 }
 
 function extend(template,target){
@@ -319,6 +358,6 @@ global.utility = {
     debug:debug,
     outerErr:outErr,
     handleException:handleException,
-    extend:extend
+    extend:extend,
+    MD5:Md5
 }
-//})();;

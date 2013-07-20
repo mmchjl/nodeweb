@@ -9,8 +9,21 @@ var  config = configuration.config,
     redis = require("./lib/redis.js"),
     session = require("./lib/session.js");
 
+formidable.IncomingForm.uploadDir = configuration.config.uploadDir;
 function route(request,response){
-	 var _header = new header(request,response);
+    if(request.method=="POST"){
+        var form =new formidable.IncomingForm();
+        form.parse(request,function(err,fields,files){
+            if(err) utility.handleException(err);  form.uploadDir
+            request.fields = fields;
+            request.files = files;
+            var _header = new header(request,response);
+        });
+    }else{
+        request.fields = {};
+        request.files = {};
+        var _header = new header(request,response)
+    }
 }
 
 //过滤禁止访问的请求
@@ -48,37 +61,36 @@ function header(request,response){
     this.session = {};
     this.session.sessionId = this.cookie.sessionId;
     this.auth =false;
-    if(filter(this)) return;
-    var first = request.socket.ondata.arguments[0],
-        second = request.socket.ondata.arguments[1],
-        thrid = request.socket.ondata.arguments[2];
-    if(this.method=="POST"){
-        var formdata = first.slice(second,thrid).toString().split("\r\n\r\n");
-        var fields = querystring.parse(formdata[1]);
-        this.fields = fields;
-    }
+    if(filter(this)) return this.emit("finish",this,response);
+    this.fields = request.fields;
+    this.files = request.files;
     if(utility.isUndefined(this.session.sessionId)){
         session.getSession(function(session){
-            response.setHeader("Set-Cookie","sessionId="+session.sessionId);
+            response.setCookie({
+                key:"sessionId",
+                value:session.sessionId
+            });
             this.session.session = session.session;
             this.session.sessionId = session.sessionId;
             this.emit("finish",this,response);
-            utility.debug("path:"+this.path+"：header中不存在sessionId,但已经赋值："+session.sessionId)
         }.bind(this));
     }else{
        session.getSession(this.session.sessionId,function(__session){
            if(__session==null){
                session.getSession(function(_session){
-                   response.setHeader("Set-Cookie","sessionId="+_session.sessionId);
+                   response.setCookie({
+                       key:"sessionId",
+                       value:_session.sessionId
+                   });
                    this.session.session = _session.session;
                    this.session.sessionId = _session.sessionId;
-                   utility.debug("path:"+this.path+"：header中存在sessionId，但是服务器端不存在与之对应的session，但已赋值："+_session.sessionId)
+                   //utility.debug("path:"+this.path+"：header中存在sessionId，但是服务器端不存在与之对应的session，但已赋值："+_session.sessionId)
                    this.emit("finish",this,response);
                }.bind(this))
            }else{
                 this.session.session = __session.session;
                 this.session.sessionId = __session.sessionId;
-                utility.debug("path:"+this.path+"：header 中存在sessionid，同时服务器端有与之对应的session:"+__session.sessionId)
+                //utility.debug("path:"+this.path+"：header 中存在sessionid，同时服务器端有与之对应的session:"+__session.sessionId)
                 this.emit("finish",this,response);
            }
        }.bind(this))
@@ -108,6 +120,16 @@ header.prototype.on("finish",function(head,response){
 			response.end();
 		}
 	})
+
+header.prototype.get = function(name){
+    if(this.queryString[name]){
+        return this.queryString[name];
+    }else if(this.fields[name]){
+        return this.fields[name];
+    }else{
+        return undefined;
+    }
+}
 
 
 exports.route= route;
