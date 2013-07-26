@@ -1,0 +1,49 @@
+﻿<div class="nav navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <ul class="nav navbar">
+                <li>HOME</li>
+                <li>INDEX</li>
+                <li>ABOUT US</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <table class="table table-striped table-bordered">
+        <thead>
+        <tr>
+            <td align="center">
+                访问地址
+            </td>
+            <td align="left">
+                最后访问时间
+            </td>
+            <td align="center">
+                访问次数
+            </td>
+        </tr>
+        </thead>
+        <tbody>
+        {#foreach $T.List as record}
+        <tr>
+            <td align="center">{$T.record.path}</td>
+            <td align="center">{(new Date($T.record.lastdate)).format("yyyy-MM-dd hh:mm:ss")}</td>
+            <td align="center">{$T.record.time}</td>
+        </tr>
+        {#/for}
+        <tr>
+            <td colspan="3" align="center">
+                <label>处理时间：</label> {$T.HandleTime}
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <div class="btn btn-info" id="showCircle">SHOW MODAL</div>
+                <!--<button class="btn btn-info" data-toggle="">SHOW MODAL</button>-->
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
