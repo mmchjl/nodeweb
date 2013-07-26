@@ -221,3 +221,5 @@ pip-log.txt
 ## 忽略webstorm产生的文件
 .idea/*
 .gitignore
+
+logfile/../*.log

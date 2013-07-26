@@ -67,7 +67,8 @@ var runtime = {
     isLogDb:false,
     isOpenUnCaughtException:true,
     basePath:__dirname,
-    sessionMode:0
+    sessionMode:0,
+    uploadDir:__dirname+"\\temp"
 };
 
 var language={

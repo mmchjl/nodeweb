@@ -1,3 +1,162 @@
+<<<<<<< HEAD
+var util = require("util");
+var fs = require("fs");
+var path = require("path");
+var mongo = require("./lib/mongodb.js"),
+    session = require("./lib/session.js"),
+    cantine =require("./handleapp/cantine.js"),
+    monitor =require("./handleapp/monitor.js"),
+    captcha = require("./handleapp/captcha.js")
+    area = require("./handleapp/area.js");
+
+
+function handle(header,response){
+	var handler = header.handler;
+	if(header.path=="/") {
+			header.path = "/index.html";
+			header.extname="html";
+			header._extname=".html";
+		}
+    //utility.debug("当前请求的ID："+header.session.sessionId);  //sessionId
+    //是否开启验证
+    if(configuration.config.runtime.isauth&&!header.auth){
+        var noauth = "no authority";
+        response.writeHead(200,{
+            "Content-Type":"text/plain",
+            "Content-Length":Buffer.byteLength(noauth)
+        })
+        response.end(noauth);
+        return;
+    }
+
+	switch(handler)
+	{
+		case "/cantine":
+            cantine.handle(header,response);
+            break;
+        case "/monitor":
+            monitor.handle(header,response);
+            break;
+        case "/captcha":
+            captcha.handle(header,response);
+            break;
+        case "/area":
+            area.handle(header,response);
+            break;
+		default:
+		defaultHandler.handle(header,response);
+		break;
+	}
+    session.setSession(header.session);
+    utility.debug(utility.Format("当前请求处理时间:{0}",((new Date()).getTime()-header.starthandletime.getTime())))
+    //是否开启统计
+    if(true){
+        var opt = {
+            collection:"static",
+            query:{
+                path:header.tempUrl.pathname
+            },
+            newObject:{
+                $set:{lastdate:Date.parse(new Date())},
+                $inc:{time:1}
+            }
+        };
+        mongo(function(err, db, release, genid){
+            if(err) {
+                console.log("计数err："+err.message);
+                release();
+            }
+            db.collection(opt.collection,function(err,col){
+                col.update(opt.query,opt.newObject ,{safe:false,upsert:true},function(err,data){
+                    if(err){
+                        console.log("计数2err："+err.message);
+                        release();
+                    }
+                    release();
+                })
+            });
+        })
+    }
+}
+
+var defaultHandler = {
+	//����̬�ļ�
+	handle:function (header,response){
+		header.path
+		var mine = header.extname;
+		switch(mine)
+		{
+			case "css":
+			case "js":
+			case "jpg":
+			case "bmp":
+			case "doc":
+			case "gif":
+			case "htm":
+			case "html":
+			case "jpe":
+			case "jpeg":
+			case "css":
+			case "txt":
+			case "mp3":
+			case "mp4":
+			case "png":
+			this.staticfile(header,response);
+			break;
+			default:
+			this.badrequest(header,response);
+			break;
+		}
+	},
+	//静态文件处理
+	staticfile:function(header,response){
+		var _path = "."+header.path;
+		// console.log("request file path:"+_path);
+		fs.exists(_path,function(res){
+			if(res){
+				fs.readFile(_path,function(err,file){
+					if(err){
+						response.writeHead(404,{
+							"Content-Type":" text/plain"
+						})
+						response.end("file read err");
+					}
+					else{
+						response.writeHead(200,{
+							"Content-Type": defaultHandler.getmime(header.extname)
+						})
+						response.write(file)
+						response.end();
+					}
+				})
+			}else{
+				response.writeHead(404,{
+					"Content-Type":" text/plain"
+				})
+				response.end("file not exists");
+			}
+		})
+	},
+	badrequest:function(header,response){
+		response.writeHead(404,{
+			"Content-Type":" text/plain"
+		})
+		response.end("file not exists");
+	},
+	getmime:function (extName){
+		return configuration.config.mime[extName];
+	},
+	getext:function(_path){
+		var extName = path.extname(_path);
+		if(extName.indexOf(".")==0){
+			extName = extName.substr(1,extName.length);
+		}
+		return extName;
+	}
+}
+
+
+=======
 var util = require("util");
 var fs = require("fs");
 var path = require("path");
@@ -158,4 +317,8 @@ var defaultHandler = {
 	}
 }
 
+<<<<<<< HEAD
+=======
+>>>>>>> 修改header操作cookie的方法
+>>>>>>> experimental
 exports.handle = handle;

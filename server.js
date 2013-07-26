@@ -1,8 +1,7 @@
-﻿var http = require("http");
+﻿var init =require("./init.js");
+var http = require("http");
 var util = require("util");
-var formidable = require("formidable");
 var route =require("./route.js");
-var init =require("./init.js");
 
 var server = http.createServer();
 server.on("request",handleRequest)

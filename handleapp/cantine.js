@@ -21,7 +21,7 @@ var _handler = {
             query:{},
             fields:{}
 		};
-
+        //response.setCookie({});
         mongo.query(opt,function(err,data){
             if(err){
                 utility.handleException(err);

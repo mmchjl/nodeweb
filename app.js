@@ -8,4 +8,3 @@ if(configuration.config.runtime.isOpenUnCaughtException){
 }
 server.listen(8080);
 
-//server.listen(8080);
