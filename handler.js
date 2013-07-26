@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 var util = require("util");
 var fs = require("fs");
 var path = require("path");
@@ -80,7 +80,6 @@ function handle(header,response){
 }
 
 var defaultHandler = {
-	//����̬�ļ�
 	handle:function (header,response){
 		header.path
 		var mine = header.extname;
@@ -156,7 +155,7 @@ var defaultHandler = {
 }
 
 
-=======
+
 var util = require("util");
 var fs = require("fs");
 var path = require("path");

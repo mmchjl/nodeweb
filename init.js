@@ -54,16 +54,7 @@ var config = require("./config.js").config,
             case "date":
             case "time":
                 //日期变量,要求格式为yyyy/MM/dd hh:mm
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-                if(isNaN(orgObj[pro])){
-                    obj[pro] =Date.parse(orgObj[pro]);
-                }else{
-                    obj[pro] = parseInt(orgObj[pro]);
-                }
-=======
->>>>>>> experimental
+
                 if(!isNaN(orgObj[pro])){
                     obj[pro] = parseInt(orgObj[pro]);
                 }else{
@@ -72,10 +63,6 @@ var config = require("./config.js").config,
                 break;
             default :
                 obj[pro] = orgObj[pro];
-<<<<<<< HEAD
-=======
->>>>>>> 修改header操作cookie的方法
->>>>>>> experimental
                 break;
         }
     }
@@ -316,7 +303,6 @@ Array.prototype.Each = function(fun) {
 
 //Set-Cookie: userName=admin; expires=Thu, 26-Apr-2012 15:52:34 GMT; path=/
 http.OutgoingMessage.prototype.setCookie =function(cookie){
-<<<<<<< HEAD
     var _name = cookie.name,
         _value = cookie.value,
         _expires = cookie.expires,
@@ -343,24 +329,6 @@ http.OutgoingMessage.prototype.removeCookie=function(name){
     if(!this._header&&name){
        this.setHeader("Set-Cookie",utility.Format("{0}={1};expires={2}",name,"",(new Date(14626611963)).toGMTString()));
     }
-}
-
-=======
-<<<<<<< HEAD
-    var name = cookie.key,
-        value = cookie.value,
-        path = cookie.path?cookie.path:"/",
-        domain = cookie.domain,
-        expire = cookie.expire;
-
-    var _cookie = Format("{0}={1};path={2}",name,value,path);
-    if(domain){
-        _cookie = Format("{0};domain={1}",_cookie,domain);
-    }
-    if(expire){
-        _cookie = Format("{0};expire={1}",_cookie,expire);
-    }
-    this.setHeader("Set-Cookie",_cookie);
 }
 
 http.OutgoingMessage.prototype.endJson=function(obj){
@@ -385,37 +353,14 @@ function Md5(str,ali,outputFormat){
      var hash = crypto.createHash(_ali);
     hash.update(str);
     return hash.digest(_outputForamt);
-=======
-    var _name = cookie.name,
-        _value = cookie.value,
-        _expires = cookie.expires,
-        _secure = cookie.secure,
-        _domain = cookie.domain,
-        _path = cookie.path?cookie.path:"/";
-    var header = "Set-Cookie";
-    var value = "";
-    if(_name&&_value) value+=utility.Format(" {0}={1}",_name,_value);
-    if(_expires) value=utility.Format("{0}; {1}={2}",value,"expire",_expires);
-    if(_domain) value = utility.Format("{0}; {1}={2}",value,"domain",_domain);
-    if(_path) value=utility.Format("{0}; {1}={2}",value,"path",_path);
-    if(_secure) value = utility.Format("{0};{1}",value,"secure");
-    //if(_value) value+=_value;
-    //没有生产_header才设置响应头
-    if(!this._header){
-        this.setHeader(header,value);
-    }else{
-        utility.handleException(new Error("can not set header after header had send to client"));
-    }
 }
 
 http.OutgoingMessage.prototype.removeCookie=function(name){
     if(!this._header&&name){
        this.setHeader("Set-Cookie",utility.Format("{0}={1};expires={2}",name,"",(new Date(14626611963)).toGMTString()));
     }
->>>>>>> 修改header操作cookie的方法
 }
 
->>>>>>> experimental
 http.OutgoingMessage.prototype.writeJson = function(){
     var temp = arguments[0];
     if(typeof temp=="string") this.wirte(temp);
@@ -462,12 +407,4 @@ global.utility = {
     handleException:handleException,
     extend:extend,
     MD5:Md5
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 }
-=======
->>>>>>> experimental
-}
-//})();;
->>>>>>> 修改header操作cookie的方法
