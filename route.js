@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ﻿var handler = require("./handler");
 var formidable = require("formidable");
 var querystring = require("querystring");
@@ -133,8 +132,7 @@ header.prototype.get = function(name){
 }
 
 
-=======
-﻿var handler = require("./handler");
+var handler = require("./handler");
 var formidable = require("formidable");
 var querystring = require("querystring");
 var config = require("./config.js").config;
@@ -250,5 +248,5 @@ header.prototype.on("finish",function(head,response){
 	})
 
 
->>>>>>> 修改header操作cookie的方法
+
 exports.route= route;
