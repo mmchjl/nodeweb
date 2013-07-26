@@ -2288,7 +2288,7 @@ table th[class*="span"],
 }
 
 /* White icons with optional class, or on hover/focus/active states of certain elements */
-
+/*
 .icon-white,
 .nav-pills > .active > a > [class^="icon-"],
 .nav-pills > .active > a > [class*=" icon-"],
@@ -2703,7 +2703,7 @@ table th[class*="span"],
 
 .icon-minus {
   background-position: -433px -96px;
-}*/
+}
 
 .icon-asterisk {
   background-position: -456px -96px;
@@ -2871,7 +2871,7 @@ table th[class*="span"],
 .icon-fullscreen {
   background-position: -456px -144px;
 }
-
+*/
 .dropup,
 .dropdown {
   position: relative;

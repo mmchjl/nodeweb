@@ -13,6 +13,7 @@ a:hover
 {
     color: Blue;
 }
+<<<<<<< HEAD
 #tableframk
 {
     width: 1300px;
@@ -94,3 +95,8 @@ ignore
     background-image: -moz-linear-gradient(left,transparent,rgba(255,255,255,0.9),transparent);
     background-image: -webkit-linear-gradient(left,transparent,rgba(255,255,255,0.9),transparent);
 }
+=======
+
+#editor {width:750px;max-height:300px;height: 200px;border: 1px solid #808080;box-shadow:5px 5px rgba(78,88,45,0.5);border-radius:5px}
+#nav_div{bottom:100px;right:150px}
+>>>>>>> 修改header操作cookie的方法

@@ -28,7 +28,12 @@ var mime = {
 	xlw:"application/vnd.ms-excel",
 	zip:"application/zip",
 	mp4:"video/mp4",
-	mp3:"application/octet-stream"
+	mp3:"application/octet-stream",
+    woff:"application/font-woff",
+    svg:"image/svg+xml",
+    ttf:"application/font-ttf",
+    otf:"application/font-otf",
+    eot:"application/font-eot"
 };
 
 var forbiden =[
@@ -68,6 +73,11 @@ var runtime = {
 
 var language={
     serverErr:"服务器繁忙"
+};
+
+var powerList={
+
+
 };
 
 module.exports.config = {

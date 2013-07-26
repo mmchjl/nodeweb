@@ -1,4 +1,5 @@
 ﻿
+<<<<<<< HEAD
 /*
 Cookie类
 */
@@ -144,8 +145,10 @@ Cookie.prototype.remove = function() {
 END Cookie类
 */
 
+=======
+>>>>>>> 修改header操作cookie的方法
 //========================================================命名空间Begin===========================================================
-var dc = new Object();
+
 var Namespace = new Object();
 Namespace.Register = function(fullNS) {
     var nsArray = fullNS.split('.');
@@ -174,6 +177,7 @@ Namespace.Exists = function(fullNS) {
 
 //========================================================系统函数Begin=============================================================
 Namespace.Register("dc.System");
+<<<<<<< HEAD
 dc.System.LoadCss = function(file) {
     var cssTag = document.getElementById('loadCss');
     var head = document.getElementsByTagName('head').item(0);
@@ -213,6 +217,8 @@ dc.System.LoadJs = function(file, onload, iscache) {
     }
 };
 
+=======
+>>>>>>> 修改header操作cookie的方法
 
 dc.System.GetJqObjectById = function(idOrJq) {
     var $jq = null;
@@ -226,8 +232,11 @@ dc.System.GetJqObjectById = function(idOrJq) {
     return $jq;
 };
 
+<<<<<<< HEAD
 //========================================================系统函数End===============================================================
 
+=======
+>>>>>>> 修改header操作cookie的方法
 //=======================================================模板函数BEGIN=============================================================
 //$.jTemplatesDebugMode(true);
 Namespace.Register("Nenglong.Template");
@@ -299,8 +308,11 @@ NengLongTemplate.prototype.load = function(ops, isExtendBySelf, deep, isExtendPr
             //设最后的参数
             G_Template_Params.options = options;
 
+<<<<<<< HEAD
             //Nenglong.Template.G_Navi.saveLoadRoute(options);
 
+=======
+>>>>>>> 修改header操作cookie的方法
             this.templateLoad(options, extendOnloadEvent);
         }
     }
@@ -375,7 +387,11 @@ NengLongTemplate.prototype.templateLoad = function(options, extendOnloadEvent) {
             $content.appendTo("#" + options.parent);
         };
         var url = $.trim(urlList[i]);
+<<<<<<< HEAD
         /*if (url.indexOf("~") >= 0) {
+=======
+/*        if (url.indexOf("~") >= 0) {
+>>>>>>> 修改header操作cookie的方法
             url = url.replace('~', NENGLONG_CMP_URL_BASE).replace("//", "/");
         }
         else if (url.indexOf(NENGLONG_CMP_URL_BASE) != 0 && url.indexOf("http://") < 0) {
@@ -384,16 +400,22 @@ NengLongTemplate.prototype.templateLoad = function(options, extendOnloadEvent) {
         //app应用跨域时
         if (url.indexOf("http://") >= 0 && url.indexOf(window.location.host) < 0) {
             url = Nenglong.System.App.GetProxyUrl(url);
-        }
+        }*/
         $content.setTemplateURL(url, null, { filter_data: options.filterData });
         contents.push($content);
     }
 
+<<<<<<< HEAD
     if (this.templateUnload(contents, options, true) == false) {
         //G_NengLongLoading.animate(100);
         //G_NengLongLoading.hide();
+=======
+/*    if (this.templateUnload(contents, options, true) == false) {
+        G_NengLongLoading.animate(100);
+        G_NengLongLoading.hide();
+>>>>>>> 修改header操作cookie的方法
         return;
-    }
+    }*/
 
     var dataUrl = options.dataUrl;
     if (typeof (options.data) != "undefined" && options.data != null && $.isPlainObject(options.data)) {
@@ -402,11 +424,19 @@ NengLongTemplate.prototype.templateLoad = function(options, extendOnloadEvent) {
     }
     else {
         if (dataUrl != "") {
+<<<<<<< HEAD
 //            if (dataUrl.indexOf("http://") < 0) {
 //                dataUrl = NENGLONG_CMP_URL_BASE + dataUrl;
 //            } else if (url.indexOf(window.location.host) < 0) {
 //                dataUrl = Nenglong.System.App.GetProxyUrl(dataUrl, options.params);
 //            }
+=======
+/*            if (dataUrl.indexOf("http://") < 0) {
+                dataUrl = NENGLONG_CMP_URL_BASE + dataUrl;
+            } else if (url.indexOf(window.location.host) < 0) {
+                dataUrl = Nenglong.System.App.GetProxyUrl(dataUrl, options.params);
+            }*/
+>>>>>>> 修改header操作cookie的方法
             $.ajax({
                 type: options.requestType,
                 dataType: "json",
@@ -423,9 +453,16 @@ NengLongTemplate.prototype.templateLoad = function(options, extendOnloadEvent) {
                         //contents[0].html('loading error!');
                         //设置loading动画begin
                         //G_NengLongLoading.animate(100);
+<<<<<<< HEAD
                        // G_NengLongLoading.hide();
                         //设置loading动画end
 /*                        Nenglong.UI.AlertMessage("数据加载失败、请重试！", function() {
+=======
+                        //G_NengLongLoading.hide();
+                        //设置loading动画end
+
+                        Nenglong.UI.AlertMessage("数据加载失败、请重试！", function() {
+>>>>>>> 修改header操作cookie的方法
                             var contentList = options.content.split(",");
                             $.each(contentList, function(index, content) {
                                 _this.hideLoading(content);
@@ -476,8 +513,13 @@ NengLongTemplate.prototype.templateUnload = function(contents, options, findChil
             r = sr;
     }
 
+<<<<<<< HEAD
     if (r != false)
         //Nenglong.Template.G_Path.releasePath(opt);
+=======
+/*    if (r != false)
+        Nenglong.Template.G_Path.releasePath(opt);*/
+>>>>>>> 修改header操作cookie的方法
 
     return r;
 };
@@ -495,8 +537,13 @@ NengLongTemplate.prototype.templateProcess = function(options, data, contents) {
     };
     this.loadingTemplateCount--;
     //设置loading动画begin
+<<<<<<< HEAD
     //var p = G_NengLongLoading.progress + 30 / this.loadingTemplateCount;
     //G_NengLongLoading.animate(p > 90 ? 90 : p);
+=======
+//    var p = G_NengLongLoading.progress + 30 / this.loadingTemplateCount;
+//    G_NengLongLoading.animate(p > 90 ? 90 : p);
+>>>>>>> 修改header操作cookie的方法
 
     //设置loading动画end
     if (this.loadingTemplateCount == 0) {
@@ -595,6 +642,7 @@ $.ajaxSetup({
     complete: function(xhr, ts) {
         AjaxSetupcomplete(xhr, ts);
     },
+    async:true,
     statusCode: {
         302: function() {
             location.href = NENGLONG_CMP_LOGINPAGE;
@@ -776,6 +824,106 @@ function getDomAppAndCmd(dom) {
 //----------------------------------------------------------模板私有方法END-------------------------------------------------------------
 //=============================================================模板函数END===============================================================
 
+<<<<<<< HEAD
+=======
+//=============================================================直接访问函数START===============================================================
+//------------------------------------------------------------以下是页面直接访问BEGIN--------------------------------------------------
+Namespace.Register("Nenglong.DirectLoad");
+var NengLong_DirectLoad_Default_Options = {
+    app: "",
+    action: "",
+    params: {},
+    onload: function(opt, data) { },
+    unload: function(opt) { }
+};
+
+if (typeof (G_DirectLoad_Params) == "undefined") {
+    var G_DirectLoad_Params = {
+        action: "",
+        app: "",
+        options: {},
+        defaultAction: "",
+        defaultApp: "",
+        init: function(fun) {
+            Nenglong.Template.EnterMain(fun);
+        },
+        onload: [],
+        errorload: function() {
+            Nenglong.Template.Load(G_TemplateList.navigation.init);
+        }
+    };
+}
+
+//直接访问
+var G_DirectLoadList = {};
+
+Nenglong.DirectLoad.getDirectLoadOptions = function(obj) {
+    var app = obj.app, action = obj.action;
+    var params = obj.params;
+    var returnVal = null;
+
+    if (typeof (app) != "undefined" && app != null) G_DirectLoad_Params.app = app;
+    if (typeof (action) != "undefined" && action != null) G_DirectLoad_Params.action = action;
+    var cApp = G_DirectLoad_Params.app, cAction = G_DirectLoad_Params.action;
+
+    if (typeof (G_DirectLoadList[cApp]) == "undefined") {
+        returnVal = null;
+    }
+    else {
+        if (typeof (G_DirectLoadList[cApp][cAction]) == "undefined") {
+            var defaultObj = null;
+            $.each(G_DirectLoadList[cApp], function(key, value) { defaultObj = value; return false; });
+            if (defaultObj != null)
+                returnVal = defaultObj;
+            else
+                returnVal = null;
+            //if (typeof (cmd) == "undefined") {
+            //    return G_TemplateList[cApp][G_Template_Params.defaultCmd];
+            //}
+            //else {
+            //    return G_TemplateList[G_Template_Params.defaultApp][cmd];
+            //}
+        }
+        else {
+            returnVal = G_DirectLoadList[cApp][cAction];
+        }
+    }
+
+    return returnVal;
+};
+
+Nenglong.DirectLoad.Load = function(ops, deep) {
+    if ($.isPlainObject(ops)) {
+        ops = new Array(ops);
+    };
+    if ($.isArray(ops)) {
+        for (var i = 0; i < ops.length; i++) {
+            var options = null;
+            var p = {};
+            var cO = Nenglong.DirectLoad.getDirectLoadOptions(ops[i]);
+            if (typeof (cO) != "undefined" && cO != null) {
+                options = $.extend(deep, {}, NengLong_DirectLoad_Default_Options, cO, p, ops[i]);
+                Nenglong.DirectLoad.Action(options);
+            }
+            else {
+                alert("此操作不存在！");
+                G_DirectLoad_Params.errorload();
+            }
+        }
+    };
+}
+
+Nenglong.DirectLoad.Action = function(options) {
+    if (options.onload) {
+        Nenglong.Template.EnterMain(function() {
+            options.onload(options.params);
+        });
+    }
+}
+
+//---------------------------------------------------------以上是页面直接访问END------------------------------------------------------
+//=============================================================直接访问函数END===============================================================
+>>>>>>> 修改header操作cookie的方法
 
 //=================================================================AJAX共用方法 BEGIN==========================================================================//
 Namespace.Register("Nenglong.Ajax");
@@ -793,9 +941,15 @@ Nenglong.Ajax.GetData = function(url, ops, successCallback, errorCallback, async
 //    Data: 数据，成功时返回数据json对象，失败时返回错误信息
 //}
 Nenglong.Ajax.AjaxData = function(url, ops, successCallback, errorCallback, ajaxType, async, isStandardFormat) {
+<<<<<<< HEAD
     var _isStandardFormat = false;
     if (isStandardFormat == true)
         _isStandardFormat = true;
+=======
+    var _isStandardFormat = true;
+    if (isStandardFormat == false)
+        _isStandardFormat = false;
+>>>>>>> 修改header操作cookie的方法
 
     var ay = true;
     if (async == false)
@@ -820,7 +974,26 @@ Nenglong.Ajax.AjaxData = function(url, ops, successCallback, errorCallback, ajax
         dataType: "json",
         async: ay,
         success: function(data) {
+<<<<<<< HEAD
             successCallback(data)
+=======
+            if (_isStandardFormat == true) {
+                if (data && typeof (data.Result) != "undefined") {
+                    if (data.Result == true) {
+                        if (successCallback)
+                            successCallback(data.Data);
+                    } else {
+                        if (errorCallback)
+                            errorCallback(data.Data);
+                    }
+                } else {
+                    if (errorCallback) errorCallback("失败");
+                }
+            } else {
+                if (successCallback)
+                    successCallback(data);
+            }
+>>>>>>> 修改header操作cookie的方法
         }
     }).error(function() { if (errorCallback) errorCallback('连接失败'); });
 };
@@ -832,6 +1005,7 @@ Nenglong.Ajax.AjaxData = function(url, ops, successCallback, errorCallback, ajax
 var G_CommunicateInitOnload = [];
 //=====================================================交流互动的所有全局变量END============================================
 
+<<<<<<< HEAD
 
 //=======================================================脚本加载后初始化BEGIN===============================================
 if (typeof (G_OnLoadParams) != "undefined") {
@@ -840,6 +1014,8 @@ if (typeof (G_OnLoadParams) != "undefined") {
     });
 }
 //=======================================================脚本加载后初始化END=================================================
+=======
+>>>>>>> 修改header操作cookie的方法
 
 //=======================================================分页BEGIN=============================================================
 function NenglongPageInit(options, data) {
@@ -948,6 +1124,7 @@ function NengLongPageOnKeyDown(e) {
 }
 G_Template_Params.onload.push(NenglongPageInit);
 //=========================================================分页END==========================================================
+<<<<<<< HEAD
 
 //=========================================================图片处理BEGIN==========================================================
 Namespace.Register("Nenglong.Image");
@@ -1097,3 +1274,5 @@ Nenglong.Image.Fillling = function(ImgD, iwidth, iheight, successChangeEvent) {
 };
 
 //=========================================================图片处理END==========================================================
+=======
+>>>>>>> 修改header操作cookie的方法
