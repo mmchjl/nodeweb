@@ -5,7 +5,9 @@ var mongo = require("./lib/mongodb.js"),
     session = require("./lib/session.js"),
     cantine =require("./handleapp/cantine.js"),
     monitor =require("./handleapp/monitor.js"),
-    captcha = require("./handleapp/captcha.js");
+    captcha = require("./handleapp/captcha.js"),
+    blog=require("./handleapp/blog.js"),
+    article=require("./handleapp/article.js");
 
 
 function handle(header,response){
@@ -15,14 +17,14 @@ function handle(header,response){
 			header.extname="html";
 			header._extname=".html";
 		}
-    console.log("当前请求的ID："+header.session.sessionId);
+    //console.log("当前请求的ID："+header.session.sessionId);
     //是否开启验证
     if(configuration.config.runtime.isauth&&!header.auth){
         var noauth = "no authority";
         response.writeHead(200,{
             "Content-Type":"text/plain",
             "Content-Length":Buffer.byteLength(noauth)
-        })
+        });
         response.end(noauth);
         return;
     }
@@ -38,6 +40,12 @@ function handle(header,response){
        case "/captcha":
            captcha.handle(header,response);
             break;
+        case "/blog":
+            blog.handle(header,response);
+            break;
+        case "/article":
+            article.handle(header,response);
+            break;
 		default:
 		defaultHandler.handle(header,response);
 		break;
@@ -51,7 +59,7 @@ function handle(header,response){
                 path:header.tempUrl.pathname
             },
             newObject:{
-                $set:{lastdate:Date.parse(new Date())},
+                $set:{lastdate:(new Date()).getTime()},
                 $inc:{time:1}
             }
         };
@@ -74,9 +82,7 @@ function handle(header,response){
 }
 
 var defaultHandler = {
-	//����̬�ļ�
 	handle:function (header,response){
-		header.path
 		var mine = header.extname;
 		switch(mine)
 		{
@@ -90,11 +96,15 @@ var defaultHandler = {
 			case "html":
 			case "jpe":
 			case "jpeg":
-			case "css":
 			case "txt":
 			case "mp3":
 			case "mp4":
 			case "png":
+            case "otf":
+            case "eot":
+            case "svg":
+            case "ttf":
+            case "woff":
 			this.staticfile(header,response);
 			break;
 			default:
@@ -102,7 +112,6 @@ var defaultHandler = {
 			break;
 		}
 	},
-	//��̬�ļ��Ķ�ȡ
 	staticfile:function(header,response){
 		var _path = "."+header.path;
 		// console.log("request file path:"+_path);
@@ -148,6 +157,5 @@ var defaultHandler = {
 		return extName;
 	}
 }
-
 
 exports.handle = handle;

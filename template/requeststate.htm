@@ -1,6 +1,7 @@
-<div>
-<table>
-    <tr>
+<div class="container">
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
         <td align="center">
             访问地址
         </td>
@@ -10,7 +11,9 @@
         <td align="center">
             访问次数
         </td>
-    </tr>
+        </tr>
+    </thead>
+    <tbody>
     {#foreach $T.List as record}
     <tr>
         <td align="center">{$T.record.path}</td>
@@ -23,5 +26,6 @@
             <label>处理时间：</label> {$T.HandleTime}
         </td>
     </tr>
+    </tbody>
 </table>
 </div>

@@ -58,7 +58,12 @@ function header(request,response){
     }
     if(utility.isUndefined(this.session.sessionId)){
         session.getSession(function(session){
-            response.setHeader("Set-Cookie","sessionId="+session.sessionId);
+            //response.setHeader("Set-Cookie","sessionId="+session.sessionId);
+            response.setCookie({
+                name:"sessionId",
+                value:session.sessionId
+                //sessionId:session.sessionId
+            });
             this.session.session = session.session;
             this.emit("finish",this,response);
         }.bind(this));
@@ -67,7 +72,12 @@ function header(request,response){
        session.getSession(this.session.sessionId,function(__session){
            if(__session==null){
                session.getSession(function(_session){
-                   response.setHeader("Set-Cookie","sessionId="+_session.sessionId);
+                   response.setCookie({
+                       name:"sessionId",
+                       value:_session.sessionId
+                       //sessionId:_session.sessionId
+                   });
+                   //response.setHeader("Set-Cookie","sessionId="+_session.sessionId);
                    this.session.session = _session.session;
                    this.emit("finish",this,response);
                }.bind(this))

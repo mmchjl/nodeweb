@@ -38,7 +38,7 @@ function listen(port){
 	if(port==undefined){
 		port = 8080;
 	}
-	server.listen(8080);
+	server.listen(port);
 }
 
 exports.listen = listen;

@@ -161,7 +161,7 @@ String.prototype.HtmlDecode = function() {
  * 将字符串改成html编码
  * */
 String.prototype.HtmlEncode = function() {
-    return this.replace(/&/g, '&amp').replace(/\"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    return this.replace(/\"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 };
 
 

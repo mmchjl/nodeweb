@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 var mongo = require("../lib/mongoClient.js"),
-    cap = require("../lib/captcha.js"),
+    //cap = require("../lib/captcha.js"),
     fs = require("fs"),
     edge = require('edge');
 
@@ -25,7 +25,7 @@ function handle(header,response){
 
 var _handler = {
     getlist:function(header,response){
-        cap.creat(function(obj){
+        captcha.creat(function(obj){
             response.writeHead(200,{
                 "Content-Type":"text/plain"
             });
@@ -49,7 +49,7 @@ var _handler = {
             id = captcha.decode(picid);
         var path
         if(id){
-            path = utility.Format("{0}\\images\\captcha_pic\\{1}.png",configuration.config.runtime.basePath,id);
+            path = utility.Format("{0}\\img\\captcha_pic\\{1}.png",configuration.config.runtime.basePath,id);
             fs.readFile(path,function(err,data){
                 if(err){
                     utility.handleException(err);
@@ -276,7 +276,7 @@ captcha.mongodbcreat = function(u_obj, cb){//去mongodb数据库创建验证码
                 utility.handleException('创建验证码集合失败:'+err);
                 return cb(false);
             }
-            ary[po].timestamp = new Date();
+            ary[po].timestamp = (new Date()).getTime();
             ary[po].po = po;
             collection.insert(ary[po], function(err, doc){
                 release();
@@ -288,7 +288,7 @@ captcha.mongodbcreat = function(u_obj, cb){//去mongodb数据库创建验证码
                 delete ary[po].po;
                 delete ary[po].timestamp;
                 ary.forEach(function(value, j){
-                    ary[j].url = '/piccaptcha?picid='+captcha.generate(ary[j].id);
+                    ary[j].url = './captcha/piccaptcha?picid='+captcha.generate(ary[j].id);
                     delete ary[j].value;
                     delete ary[j].id;
                 })
@@ -316,7 +316,7 @@ captcha.contrast = function(id, po, cb){ //判断验证码
 }
 
 captcha.destory = function(timestamp, id){ //删除验证码
-    var delc = {"timestamp":{"$lt":new Date(timestamp)}};
+    var delc = {"timestamp":{"$lt":timestamp}};
     mongo.mongo(function(err, db, release,get_id){
         if(err) return;
         if(typeof id !== 'undefined'){//如果传递了id进来则删除的条件为id
