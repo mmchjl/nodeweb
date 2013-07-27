@@ -155,7 +155,7 @@ String.prototype.RTrim = function() {
  * 将html编码还原成字符串
  * */
 String.prototype.HtmlDecode = function() {
-    return this.replace(/&amp;/g, '&').replace(/&quot;/g, '\"').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+    return this.replace(/&quot;/g, '\"').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
 };
 /**
  * 将字符串改成html编码

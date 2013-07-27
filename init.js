@@ -3,15 +3,16 @@
  * User: LE
  * Date: 13-5-15
  * Time: 下午10:00
- * To change this template use File | Settings | File Templates.
+ * 1、此文档用于初始化全局变量 utility[帮助类常用方法] 和 configuration[配置]
+ * 2、用户初始化javascript中原始数据类型的原型方法修改和添加
  */
 
-//(function(){
 var config = require("./config.js").config,
     util =require("util"),
     fs = require("fs"),
     http = require("http"),
     crypto = require("crypto");
+
 /**
  * 对象验证
  * 根据对象的属性来将字符串转化成相应的数据类型
@@ -54,13 +55,6 @@ var config = require("./config.js").config,
             case "date":
             case "time":
                 //日期变量,要求格式为yyyy/MM/dd hh:mm
-<<<<<<< HEAD
-                if(isNaN(orgObj[pro])){
-                    obj[pro] =Date.parse(orgObj[pro]);
-                }else{
-                    obj[pro] = parseInt(orgObj[pro]);
-                }
-=======
                 if(!isNaN(orgObj[pro])){
                     obj[pro] = parseInt(orgObj[pro]);
                 }else{
@@ -69,7 +63,6 @@ var config = require("./config.js").config,
                 break;
             default :
                 obj[pro] = orgObj[pro];
->>>>>>> 修改header操作cookie的方法
                 break;
         }
     }
@@ -295,61 +288,16 @@ Array.prototype.Exists = function(fun) {
         if (fun(this[i])) return true;
     }
     return false;
-
 };
 /**
  * 遍历所有元素，执行相应的方法
  * 相当于forEach
  * */
-Array.prototype.Each = function(fun) {
-    for (var i = 0; i < this.length; i++) {
-        fun(this[i]);
-    }
-};
+Array.prototype.Each = Array.prototype.forEach;
 
 
 //Set-Cookie: userName=admin; expires=Thu, 26-Apr-2012 15:52:34 GMT; path=/
 http.OutgoingMessage.prototype.setCookie =function(cookie){
-<<<<<<< HEAD
-    var name = cookie.key,
-        value = cookie.value,
-        path = cookie.path?cookie.path:"/",
-        domain = cookie.domain,
-        expire = cookie.expire;
-
-    var _cookie = Format("{0}={1};path={2}",name,value,path);
-    if(domain){
-        _cookie = Format("{0};domain={1}",_cookie,domain);
-    }
-    if(expire){
-        _cookie = Format("{0};expire={1}",_cookie,expire);
-    }
-    this.setHeader("Set-Cookie",_cookie);
-}
-
-http.OutgoingMessage.prototype.endJson=function(obj){
-    if(typeof obj=="object"){
-        this.end(JSON.stringify(obj));
-    }else{
-        this.end(obj);
-    }
-};
-
-http.OutgoingMessage.prototype.wirteJson=function(obj){
-    if(typeof obj=="object"){
-        this.wirte(JSON.stringify(obj));
-    }else{
-        this.wirte(obj);
-    }
-}
-
-function Md5(str,ali,outputFormat){
-    var _ali = ali||"md5";
-    var _outputForamt = outputFormat||"hex";
-     var hash = crypto.createHash(_ali);
-    hash.update(str);
-    return hash.digest(_outputForamt);
-=======
     var _name = cookie.name,
         _value = cookie.value,
         _expires = cookie.expires,
@@ -372,11 +320,18 @@ function Md5(str,ali,outputFormat){
     }
 }
 
+function Md5(str,ali,outputFormat){
+    var _ali = ali||"md5";
+    var _outputForamt = outputFormat||"hex";
+     var hash = crypto.createHash(_ali);
+    hash.update(str);
+    return hash.digest(_outputForamt);
+}
+
 http.OutgoingMessage.prototype.removeCookie=function(name){
     if(!this._header&&name){
        this.setHeader("Set-Cookie",utility.Format("{0}={1};expires={2}",name,"",(new Date(14626611963)).toGMTString()));
     }
->>>>>>> 修改header操作cookie的方法
 }
 
 http.OutgoingMessage.prototype.writeJson = function(){
@@ -425,9 +380,4 @@ global.utility = {
     handleException:handleException,
     extend:extend,
     MD5:Md5
-<<<<<<< HEAD
 }
-=======
-}
-//})();;
->>>>>>> 修改header操作cookie的方法

@@ -1,7 +1,4 @@
-﻿
-
-
-//mime类型
+﻿//mime类型
 var mime = {
 	avi:"video/x-msvideo",
 	bmp:"image/bmp",
@@ -51,7 +48,8 @@ var forbiden =[
 
 var mongo_config = {
     server:"127.0.0.1",
-    port:27017
+    port:27017,
+    databaseName:"test"
 };
 
 var redis_config = {
