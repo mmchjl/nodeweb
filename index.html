@@ -1,106 +1,37 @@
 ﻿<!DOCTYPE html>
-<<<<<<< HEAD
 <html>
 <head>
     <title></title>
     <link href="css/StyleMain.css" rel="stylesheet" type="text/css" />
     <link href="css/font-awesome.css" rel="stylesheet" type="text/css"/>
-=======
-<<<<<<< HEAD
-<html lang="en">
-<head>
-    <title></title>
-    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
 
-=======
-<html>
-<head>
-    <title></title>
-    <link href="css/StyleMain.css" rel="stylesheet" type="text/css" />
-    <link href="css/font-awesome.css" rel="stylesheet" type="text/css"/>
->>>>>>> 修改header操作cookie的方法
->>>>>>> experimental
   <!--  <script type="text/javascript" src="http://passport.baidu.com/js/sitedata_bas.js" charset="GBK"></script>
 
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.4"></script>-->
     <script type="text/javascript" src="./js/common.js"></script>
     <!--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"> </script>-->
-    <script type="text/javascript" src="./js/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="./js/jquery.js"></script>
     <script type="text/javascript" src="./js/bootstrap.min.js"> </script>
     <script src="js/jquery-jtemplates.js" type="text/javascript"></script>
-<<<<<<< HEAD
     <link type="text/css" rel="stylesheet" href="./css/bootstrap.css"/>
     <script type="text/javascript" src="js/bootstrap-wysiwyg.js"></script>
     <script src="js/init.js" type="text/javascript"></script>
     <script src="js/JavaScript1.js" type="text/javascript"></script>
     <script type="text/javascript">
-=======
-<<<<<<< HEAD
-    <script src="js/bootstrap.min.js" type="text/javascript"></script>
- <!--   <script src="http://ajax.cdnjs.com/ajax/libs/underscore.js/1.1.4/underscore-min.js" type="text/javascript"></script>
-    <script src="http://ajax.cdnjs.com/ajax/libs/backbone.js/0.3.3/backbone-min.js" type="text/javascript"></script>-->
-    <!--<script src="js/backbone-min.js" type="text/javascript"></script>-->
-    <script src="js/init.js" type="text/javascript"></script>
-    <script src="js/myjsfile.js" type="text/javascript"></script>
-
-
-    <script type="text/javascript">
-        Nenglong.Template.G_Route.index={
-            bodyInit:{
-              app:"index",
-              cmd:"bodyInit",
-              content:"body",
-              templateUrl:"./template/index.htm",
-              dataUrl:"./monitor/requeststate"
-            },
-            init: {
-                app: "index",
-                cmd: "init",
-                content: "maincontent",
-                templateUrl: "./template/requeststate.htm",
-                dataUrl:"./monitor/requeststate",
-                params: { },
-                onload: function() {
-                    index.control.init()
-                }
-            },
-            area:{
-                app:"index",
-                cmd:"area",
-                content:"body",
-                templateUrl:"./template/area.htm",
-                dataUrl:"./area/getlist",
-                onload:function(){
-                    area.control.init();
-                }
-            }
-        }
-
-        window.onload=function(){
-            NengLongTemplateLoad({
-                app:"index",
-                cmd:"bodyInit"
-=======
-    <link type="text/css" rel="stylesheet" href="./css/bootstrap.css"/>
-    <script type="text/javascript" src="js/bootstrap-wysiwyg.js"></script>
-    <script src="js/init.js" type="text/javascript"></script>
-    <script src="js/JavaScript1.js" type="text/javascript"></script>
-    <script type="text/javascript">
->>>>>>> experimental
         Nenglong.Template.G_Route.index = {
             init:{
                 app:"index",
                 cmd:"init",
                 content:"body",
-                templateUrl:"./template/index.htm",
+                templateUrl:"./template/requeststate.htm",
                 dataUrl:"./monitor/requeststate",
                 onload:function(){
-                    $("#showCircle").unbind("click").bind("click",function(){
-                        NengLongTemplateLoad({
-                            app:"index",
-                            cmd:"blogType"
-                        });
-                    });
+                   $("#btn_area").unbind("click").bind("click",function(){
+                       NengLongTemplateLoad({
+                           app:"index",
+                           cmd:"blogType"
+                       });
+                   });
                 }
             },
             circle:{
@@ -128,24 +59,11 @@
             NengLongTemplateLoad({
                 app:"index",
                 cmd:"init"
-<<<<<<< HEAD
-=======
->>>>>>> 修改header操作cookie的方法
->>>>>>> experimental
             });
-            //NenglongPageInit();
         }
     </script>
 
 </head>
 <body id="body">
-<<<<<<< HEAD
-<div id="ff"></div>
-=======
-<<<<<<< HEAD
-=======
-<div id="ff"></div>
->>>>>>> 修改header操作cookie的方法
->>>>>>> experimental
 </body>
 </html>
