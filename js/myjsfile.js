@@ -1,4 +1,4 @@
-if(!Namespace.Exists("area.control")){
+﻿if(!Namespace.Exists("area.control")){
     Namespace.Register("area.control");
     area.control={
         init:function(){
