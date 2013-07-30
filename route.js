@@ -1,4 +1,4 @@
-﻿﻿var handler = require("./handler");
+﻿var handler = require("./handler");
 var formidable = require("formidable");
 var querystring = require("querystring");
 var path = require("path");
@@ -130,7 +130,5 @@ header.prototype.get = function(name){
         return undefined;
     }
 }
-
-
 
 exports.route= route;
