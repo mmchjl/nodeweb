@@ -316,11 +316,7 @@ captcha.contrast = function(id, po, cb){ //判断验证码
 }
 
 captcha.destory = function(timestamp, id){ //删除验证码
-<<<<<<< HEAD
-    var delc = {"timestamp":{"$lt":new Date(timestamp)}}
-=======
     var delc = {"timestamp":{"$lt":timestamp}};
->>>>>>> 修改header操作cookie的方法
     mongo.mongo(function(err, db, release,get_id){
         if(err) return;
         if(typeof id !== 'undefined'){//如果传递了id进来则删除的条件为id

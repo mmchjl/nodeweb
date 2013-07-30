@@ -5,7 +5,8 @@ var mongo = require("./lib/mongodb.js"),
     session = require("./lib/session.js"),
     cantine =require("./handleapp/cantine.js"),
     monitor =require("./handleapp/monitor.js"),
-    captcha = require("./handleapp/captcha.js");
+    captcha = require("./handleapp/captcha.js"),
+    area = require("./handleapp/area.js");
     //blog=require("./handleapp/blog.js"),
     //article=require("./handleapp/article.js");
 
@@ -45,6 +46,9 @@ function handle(header,response){
             break;
         case "/article":
             article.handle(header,response);
+            break;
+        case "/area":
+            area.handle(header,response);
             break;
 		default:
 		defaultHandler.handle(header,response);
