@@ -1,3 +1,50 @@
 ﻿
 #editor {width:750px;max-height:300px;height: 200px;border: 1px solid #808080;box-shadow:5px 5px rgba(78,88,45,0.5);border-radius:5px}
 #nav_div{bottom:100px;right:150px}
+.ribbon{
+    position: absolute;
+    right:-11px;
+    top: -10px;
+}
+.panel{
+    position: relative;
+    height: 350px;
+    background: #006dcc;
+}
+.padding-small{
+    padding:10px
+}
+.padding-middle{
+    padding: 20px
+}
+.padding-large{
+    padding: 45px;
+}
+.mirror{
+    -moz-transform-origin: bottom center;
+    -ms-transform-origin: bottom center;
+    -o-transform-origin: bottom center;
+    -webkit-transform-origin: bottom center;
+    transform-origin: bottom center;
+    -moz-transform: rotate(0deg) scale(1);
+    -ms-transform: rotate(0deg) scale(1);
+    -o-transform: rotate(0deg) scale(1);
+    -webkit-transform: rotate(0deg) scale(1);
+    transform: rotate(0deg);
+    -moz-transition:  all ease-in 0.5s;
+    -o-transition:  all ease-in 0.5s;
+    -webkit-transition:  all ease-in 0.5s;
+    transition:  all ease-in 0.5s;
+    -webkit-box-reflect: below -7px -webkit-gradient(linear, 0 0, 0 100%, from(rgba(0,0,0,0.1)), color-stop(.2, transparent), to(rgba(3,3,3,0.3)));
+}
+.mirror:hover{
+    -moz-transform: rotate(20deg) scale(1.2);
+    -ms-transform: rotate(20deg) scale(1.2);
+    -o-transform: rotate(20deg) scale(1.2);
+    -webkit-transform: rotate(0deg) scale(1.5);
+    transform: rotate(20deg) scale(1.2);
+}
+.container section{
+    margin-top: 30px;
+}
+
