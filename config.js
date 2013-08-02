@@ -61,14 +61,15 @@ var redis_config = {
 };
 
 var runtime = {
-    isauth:false,
-    isDebug:true,
-    isLog:true,
-    isLogDb:false,
-    isOpenUnCaughtException:true,
-    basePath:__dirname,
-    sessionMode:0,
-    uploadDir:__dirname+"\\temp"
+    isauth:false,                                       //是否开启验证
+    isDebug:true,                                       //是否显示在控制台上debug异常信息
+    isLog:true,                                         //是否开启日志
+    isLogDb:false,                                      //是否讲日志记录在数据库
+    isOpenUnCaughtException:true,                     //是否开启进程内扑捉未catch的异常
+    basePath:__dirname,                                //程序运行的根物理路径
+    sessionMode:0,                                      //0为进程内；1为进程外；2为redis模式
+    sessionExpireTime:1000,                            //单位秒
+    uploadDir:__dirname+"\\temp"                       //上传文件的路径
 };
 
 var language={

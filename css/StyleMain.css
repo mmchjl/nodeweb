@@ -47,4 +47,11 @@
 .container section{
     margin-top: 30px;
 }
+.block{
+    margin-top: 0px;
+    width:100%;
+}
+body{
+    min-width: 1050px;
+}
 

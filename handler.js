@@ -9,7 +9,6 @@ var mongo = require("./lib/mongodb.js"),
     blog=require("./handleapp/blog.js"),
     article=require("./handleapp/article.js");
 
-
 function handle(header,response){
 	var handler = header.handler;
 	if(header.path=="/") {

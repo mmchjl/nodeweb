@@ -60,13 +60,14 @@ function header(request,response){
     this.session = {};
     this.session.sessionId = this.cookie.sessionId;
     this.auth =false;
+    console.log("当前请求的sessionId："+this.session.sessionId+" URL:"+this.rawUrl);
     if(filter(this)) return this.emit("finish",this,response);
     this.fields = request.fields;
     this.files = request.files;
     if(utility.isUndefined(this.session.sessionId)){
         session.getSession(function(session){
             response.setCookie({
-                key:"sessionId",
+                name:"sessionId",
                 value:session.sessionId
             });
             this.session.session = session.session;
@@ -78,7 +79,7 @@ function header(request,response){
            if(__session==null){
                session.getSession(function(_session){
                    response.setCookie({
-                       key:"sessionId",
+                       name:"sessionId",
                        value:_session.sessionId
                    });
                    this.session.session = _session.session;
@@ -106,7 +107,7 @@ header.prototype.on("finish",function(head,response){
 				response.writeHead(500,{
 					"Content-type":" text/html"
 				})
-				response.write("server wrong~");
+				response.write("server error");
 				response.write("<br/>"+e.message);
 				response.end();
                utility.handleException(e);
