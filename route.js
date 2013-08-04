@@ -9,7 +9,7 @@ var  config = configuration.config,
     redis = require("./lib/redis.js"),
     session = require("./lib/session.js");
 
-formidable.IncomingForm.uploadDir = configuration.config.uploadDir;
+formidable.IncomingForm.UPLOAD_DIR = configuration.config.runtime.uploadDir;
 function route(request,response){
     if(request.method=="POST"){
         var form =new formidable.IncomingForm();
@@ -60,7 +60,6 @@ function header(request,response){
     this.session = {};
     this.session.sessionId = this.cookie.sessionId;
     this.auth =false;
-    console.log("当前请求的sessionId："+this.session.sessionId+" URL:"+this.rawUrl);
     if(filter(this)) return this.emit("finish",this,response);
     this.fields = request.fields;
     this.files = request.files;
@@ -129,6 +128,10 @@ header.prototype.get = function(name){
     }else{
         return undefined;
     }
+}
+
+header.prototype.destroy=function(){
+
 }
 
 exports.route= route;

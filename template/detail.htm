@@ -1,0 +1,17 @@
+﻿{#if $T.result}
+    {#for i=1 to $T.data.list.length}
+        <div>
+            <h2>{$T.data.list[$T.i-1].title_str}</h2>
+            {#for j=1 to $T.data.list[$T.i-1].tags.length}
+                <span class="badge">{$T.data.list[$T.i-1].tags[$T.j-1].name_str}</span>
+            {#/for}
+            <hr/>
+            <div class="article">
+                {$T.data.list[$T.i-1].content_str}
+            </div>
+        </div>
+        <hr/>
+    {#/for}
+{#else}
+    <div class="">服务器内部错误~</div>
+{#/if}

@@ -7,7 +7,8 @@ var mongo = require("./lib/mongodb.js"),
     monitor =require("./handleapp/monitor.js"),
     captcha = require("./handleapp/captcha.js"),
     blog=require("./handleapp/blog.js"),
-    article=require("./handleapp/article.js");
+    article=require("./handleapp/article.js"),
+    file = require("./handleapp/file.js");
 
 function handle(header,response){
 	var handler = header.handler;
@@ -44,6 +45,9 @@ function handle(header,response){
             break;
         case "/article":
             article.handle(header,response);
+            break;
+        case "/file":
+            file.handle(header,response)
             break;
 		default:
 		defaultHandler.handle(header,response);

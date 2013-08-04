@@ -23,16 +23,17 @@ function handle(header,response){
 var _handler = {
     add:function(header,response){
         var t = JSON.parse(header.fields.data);
-        console.dir(t);
+        t=utility.objectValid(t);
         var newobject = {};
+        newobject.type_int = t.type_int;
         newobject.title_str = t.title_str||"";
         newobject.content_str = t.content_str||"";
         newobject.updateTime_date = parseInt(t.updateTime_date);
-        newobject.tag=[];
-        if(!utility.isNull(t.tag)){
-                for(var i=0;i< t.tag.length;i++){
-                    newobject.tag.push({
-                        name_str: t.tag[i],
+        newobject.tags=[];
+        if(!utility.isNull(t.tags)){
+                for(var i=0;i< t.tags.length;i++){
+                    newobject.tags.push({
+                        name_str: t.tags[i],
                         hit:0
                     });
                 }
@@ -46,11 +47,52 @@ var _handler = {
         mongo.insert(option,function(err,data){
             if(err){
                 utility.handleException(err);
-                return response.endJson({result:false,code:500});
+                return response.endJson({result:false,data:{code:500}});
             }
-            response.endJson({result:true,code:200});
+            response.endJson({result:true,data:{code:200}});
             console.dir(data);
         });
+    },
+    getlist:function(header,response){
+        var opt={
+            collection:"article",
+            query:{}
+        };
+        mongo.query(opt,function(err,data){
+            if(err){
+                utility.handleException(err);
+                return response.endJson({result:false,data:{
+                    code:500
+                }});
+            }
+            for(var i =0;i<data.list.length;i++){
+                data.list[i].content_str = data.list[i].content_str.HtmlDecode()
+            }
+            response.endJson({
+                result:true,
+                data:data
+                });
+        });
+    },
+    getrange:function(header,response){
+        var opt={
+            collection:"article",
+            query:{},
+            fields:{_id:1,title_str:1}
+        };
+        mongo.query(opt,function(err,data){
+            if(err){
+                utility.handleException(err);
+                return response.endJson({result:false,data:{code:500}});
+            }
+            response.endJson({
+                result:true,
+                data:data
+            });
+        });
+    } ,
+    gettags:function(header,response){
+
     }
 };
 

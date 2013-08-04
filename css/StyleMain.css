@@ -49,8 +49,33 @@
     margin-top: 30px;
 }
 .block{
-    margin-top: 0px;
+    margin-top: 70px;
     width:100%;
+}
+.aside{
+    padding-left: 20px;
+}
+.articleinput{
+    margin-top: 30px
+}
+#btn_submit{
+    width:150px;
+    height: 30px;
+}
+#txt_badge{
+    width: 100px;
+}
+#btn_badge{
+    margin-left: 20px;
+    width: 100px;
+    height: 30px;
+    margin-bottom: 10px
+}
+.mbadge{
+    margin-left: 10px;
+    line-height: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 body{
     min-width: 1050px;

@@ -54,7 +54,6 @@ var config = require("./config.js").config,
             case "date":
             case "time":
                 //日期变量,要求格式为yyyy/MM/dd hh:mm
-
                 if(!isNaN(orgObj[pro])){
                     obj[pro] = parseInt(orgObj[pro]);
                 }else{

@@ -45,7 +45,7 @@ var forbiden =[
     "/config.js",
     "/handler.js",
     "/route.js",
-    "/temp",
+    "/temp1",
     "/server.js"
 ];
 

@@ -1,0 +1,7 @@
+﻿<ul>
+    {#for i=1 to $T.data.list.length}
+        <li><a class="hotarticle" href="javascript:;" aid="{$T.data.list[$T.i-1]._id}">
+            {$T.data.list[$T.i-1].title_str}
+        </a></li>
+    {#/for}
+</ul>

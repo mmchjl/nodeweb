@@ -2042,7 +2042,7 @@ Nenglong.Ajax.GetData = function(url, ops, successCallback, errorCallback, async
 
 //返回类型固定格式：
 //{
-//    Result: 获取数据结果，true表示成功，false表示出错；没有此值，也表示错误，也会调用errorCallback
+//    result: 获取数据结果，true表示成功，false表示出错；没有此值，也表示错误，也会调用errorCallback
 //    Data: 数据，成功时返回数据json对象，失败时返回错误信息
 //}
 Nenglong.Ajax.AjaxData = function(url, ops, successCallback, errorCallback, ajaxType, async, isStandardFormat) {
@@ -2074,13 +2074,13 @@ Nenglong.Ajax.AjaxData = function(url, ops, successCallback, errorCallback, ajax
         async: ay,
         success: function(data) {
             if (_isStandardFormat == true) {
-                if (data && typeof (data.Result) != "undefined") {
-                    if (data.Result == true) {
+                if (data && typeof (data.result) != "undefined") {
+                    if (data.result == true) {
                         if (successCallback)
-                            successCallback(data.Data);
+                            successCallback(data.data);
                     } else {
                         if (errorCallback)
-                            errorCallback(data.Data);
+                            errorCallback(data.data);
                     }
                 } else {
                     if (errorCallback) errorCallback("失败");
