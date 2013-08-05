@@ -60,9 +60,6 @@ var _handler = {
                     code:500
                 }});
             }
-            for(var i =0;i<data.list.length;i++){
-                data.list[i].content_str = data.list[i].content_str.HtmlDecode()
-            }
             response.endJson({
                 result:true,
                 data:data

@@ -3,7 +3,7 @@
         {#for i=1 to $T.data.list.length}
             <section class="padding-small articleItem" aid="{$T.data.list[$T.i-1]._id}">
                 <h3 class="articletitle">{$T.data.list[$T.i-1].title_str}</h3>
-                <em>{ new Date($T.data.list[$T.i-1].updateTime_date).format("yyyy-MM-dd hh:mm:ss")}</em>
+                <div><em>{ new Date($T.data.list[$T.i-1].updateTime_date).format("yyyy-MM-dd hh:mm:ss")}</em></div>
             </section>
         {#/for}
     {#else}

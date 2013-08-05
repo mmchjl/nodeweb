@@ -124,9 +124,9 @@ circle = {
                 $("#badges span").each(function(index,obj){
                     badges.push($(obj).text());
                 });
-                var content = editor1.html().HtmlEncode();
+                var content = editor1.html();
                 if(title==""){
-                    $("#txt_title").addClass("error")
+                    $("#txt_title").addClass("error");
                     return;
                 }
                 var obj={
@@ -149,7 +149,7 @@ Namespace.Register("detail");
 detail = {
     init:function(){
         $("div.article").each(function(index,obj){
-            var t = $(obj).text().Trim().HtmlDecode();
+            var t = $(obj).text().Trim();
             console.log(t);
             $(obj).html(t);
         })

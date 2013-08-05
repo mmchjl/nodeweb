@@ -64,10 +64,10 @@ String.prototype.RTrim = function() {
     return this.replace(/([\\s]*$)/g, "");
 };
 String.prototype.HtmlDecode = function() {
-    return this.replace(/&amp;/g, '&').replace(/&quot;/g, '\"').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+    return this.replace(/&quot;/g, '\"').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
 };
 String.prototype.HtmlEncode = function() {
-    return this.replace(/&/g, '&amp').replace(/\"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    return this.replace(/\"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 };
 function isUndefined(obj) {
     return typeof (obj) == "undefined";
