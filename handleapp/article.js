@@ -6,18 +6,11 @@
  * To change this template use File | Settings | File Templates.
  */
 
-var mongo  = require("../lib/mongoClient.js");
+var mongo  = require("../lib/mongoClient.js"),
+    handleBase = require("./handleAppBase.js").handleBase;
 
 function handle(header,response){
-    response.writeHead(200,{
-        "Content-Type":"text/plain"
-    });
-    var action = header.action;
-    if(_handler[action]!=undefined){
-        _handler[action](header,response);
-    }else{
-        response.end();
-    }
+    app.handle(header,response)
 }
 
 var _handler = {
@@ -31,13 +24,13 @@ var _handler = {
         newobject.updateTime_date = parseInt(t.updateTime_date);
         newobject.tags=[];
         if(!utility.isNull(t.tags)){
-                for(var i=0;i< t.tags.length;i++){
-                    newobject.tags.push({
-                        name_str: t.tags[i],
-                        hit:0
-                    });
-                }
+            for(var i=0;i< t.tags.length;i++){
+                newobject.tags.push({
+                    name_str: t.tags[i],
+                    hit:0
+                });
             }
+        }
         var option={
             collection:"article",
             query:{},
@@ -58,6 +51,8 @@ var _handler = {
             collection:"article",
             query:{}
         };
+        if(header.get("type_int")) opt.query.type_int =parseInt(header.get("type_int"));
+        //if(header.get("tags"))
         mongo.query(opt,function(err,data){
             if(err){
                 utility.handleException(err);
@@ -71,7 +66,7 @@ var _handler = {
             response.endJson({
                 result:true,
                 data:data
-                });
+            });
         });
     },
     getrange:function(header,response){
@@ -93,7 +88,53 @@ var _handler = {
     } ,
     gettags:function(header,response){
 
+    },
+    list:function(header,response){
+        var opt={
+            collection:"article",
+            query:{},
+            fields:{
+                _id:1,
+                title_str:1,
+                updateTime_date:1,
+                tags:1
+            }
+        };
+        if(header.get("type_int")) opt.query.type_int =parseInt(header.get("type_int"));
+        //if(header.get("tags"))
+        mongo.query(opt,function(err,data){
+            if(err){
+                utility.handleException(err);
+                return response.endJson({
+                    result:false,
+                    data:data
+                })
+            }
+            response.endJson({
+                result:true,
+                data:data
+            });
+        });
+    },
+    detail:function(header,response){
+        var opt = {
+            collection:app.opt.collection,
+            query:{
+                _id:header.get("id")
+            }
+        };
+        mongo.findOne(opt,function(err,data){
+            if(err){
+                utility.handleException(err);
+                return response.endJson({result:false,data:{code:500}});
+            }
+            if(utility.isNull(data)) return response.endJson({result:false});
+            data.result = true;
+            response.endJson(data);
+        })
     }
 };
+
+var app = new handleBase("article",_handler);
 
 module.exports.handle = handle;

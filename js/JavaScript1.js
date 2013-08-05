@@ -1,4 +1,36 @@
-﻿Namespace.Register("blogType");
+﻿Namespace.Register("init");
+init={
+    init:function(){
+        window.onresize = function(){
+            var temp = $("div.left_div");
+            if(temp.length>=0){
+                if(window.innerWidth<=1050){
+                    $("div.left_div").hide();
+                }else if(window.innerWidth>1050&&temp.css("display")=="none"){
+                    $("div.left_div").show();
+                }
+            }
+        }
+        $("a.about").unbind("click").bind("click",function(){
+            NengLongTemplateLoad({
+                app:"index",
+                cmd:"circle"
+            });
+        })
+        $("a.head").unbind("click").bind("click",function(){
+            var type = this.getAttribute("aType");
+            NengLongTemplateLoad({
+                app:"index",
+                cmd:"list",
+                params:{
+                    type_int:type
+                }
+            });
+        });
+    }
+};
+
+Namespace.Register("blogType");
 blogType = {
     count:0,
     init:function(){
@@ -117,8 +149,50 @@ Namespace.Register("detail");
 detail = {
     init:function(){
         $("div.article").each(function(index,obj){
-            var t = $(obj).text();
+            var t = $(obj).text().Trim().HtmlDecode();
+            console.log(t);
             $(obj).html(t);
         })
     }
 }
+
+Namespace.Register("range");
+range={
+    init:function(){
+        $("a.rangeList").unbind("click").bind("click",function(){
+            var id = this.getAttribute("aid");
+            if(id){
+                NengLongTemplateLoad({
+                    app:"index",
+                    cmd:"detail",
+                    params:{
+                        id:id
+                    }
+                });
+            }
+        });
+    }
+};
+
+Namespace.Register("list");
+list={
+    init:function(){
+        $(".articleItem").unbind("click").bind("click",function(){
+            var id = this.getAttribute("aid");
+            if(id){
+                NengLongTemplateLoad({
+                    app:"index",
+                    cmd:"detail",
+                    params:{
+                        id:id
+                    }
+                });
+            }
+        });
+    }
+};
+
+Namespace.Register("tags");
+tags={
+    init:function(){}
+};

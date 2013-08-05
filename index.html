@@ -28,15 +28,10 @@
                 app:"index",
                 cmd:"init",
                 content:"body",
-                templateUrl:"./template/requeststate.htm",
+                templateUrl:"./template/index.htm",
                 dataUrl:"./monitor/requeststate",
                 onload:function(){
-                   $("#btn_area").unbind("click").bind("click",function(){
-                       NengLongTemplateLoad({
-                           app:"index",
-                           cmd:"blogType"
-                       });
-                   });
+                    init.init();
                 }
             },
             circle:{
@@ -64,7 +59,7 @@
                 cmd:"detail",
                 content:"mainDiv",
                 templateUrl:"./template/detail.htm",
-                dataUrl:"./article/getlist",
+                dataUrl:"./article/detail",
                 onload:function(){
                     detail.init()
                 }
@@ -76,64 +71,83 @@
                 templateUrl:"./template/range.htm",
                 dataUrl:"./article/getrange",
                 onload:function(){
-                    alert("heh")
+                    range.init();
+                }
+            },
+            list:{
+                app:"index",
+                cmd:"list",
+                content:"mainDiv",
+                templateUrl:"./template/list.htm",
+                dataUrl:"./article/list",
+                onload:function(){
+                    list.init();
+                }
+            },
+            tags:{
+                app:"index",
+                cmd:"tags",
+                templateUrl:"./template/tags.htm",
+                dataUrl:"./article/tags",
+                onload:function(){
+                    tags.init();
                 }
             }
         }
         window.onload=function(){
             NengLongTemplateLoad({
                 app:"index",
-                cmd:"detail"
+                cmd:"init"
             });
         }
     </script>
 
 </head>
 <body id="body">
-    <div class="nav navbar-fixed-top">
-        <div class="navbar">
-        <div class="navbar-inner">
-            <ul class="nav">
-                <li><a href="javascript:;">主页</a></li>
-                <li><a href="javascript:;">技术文章</a></li>
-                <li><a href="javascript:;">生活</a></li>
-                <li><a href="javascript:;">兴趣</a></li>
-                <li><a href="javascriipt:;">关于</a></li>
-                <li><a href="javascript:;">Windows 8</a></li>
-            </ul>
-        </div>
+<!--<div class="nav navbar-fixed-top">
+    <div class="navbar">
+    <div class="navbar-inner">
+        <ul class="nav">
+            <li><a href="javascript:;">主页</a></li>
+            <li><a href="javascript:;">技术文章</a></li>
+            <li><a href="javascript:;">生活</a></li>
+            <li><a href="javascript:;">兴趣</a></li>
+            <li><a href="javascript:;">关于</a></li>
+            <li><a href="javascript:;">Windows 8</a></li>
+        </ul>
     </div>
-    </div>
-    <hr class=""/>
-    <section class="block">
-        <div class="container-fluid">
-            <div class="span12 offset1" id="mainDiv"></div>
-            <div class="span1">
-                <div  id="rangeDiv" template="true" load="true" app="index" cmd="range">
+</div>
+</div>
+<hr class=""/>
+<section class="block">
+    <div class="container-fluid">
+        <div class="span12 offset1" id="mainDiv"></div>
+        <div class="span1">
+            <div  id="rangeDiv" template="true" load="true" app="index" cmd="range">
 
-                </div>
             </div>
         </div>
-    </section>
-    <!--   <section class="block">
-           <div class="container-fluid">
-               <section class="span12 panel">
-                   <img id="img" src="./img/ribbon-2013.png" class="ribbon" alt=""/>
-                   <div class="padding-large text-center">
-                       <h1 class="mirror" >ABOUT US</h1>
-                   </div>
-               </section>
-         div>
-       </section>
-   <!--    <div class="container">
-           <section class="span12">
-               <div class="row">
-                   <div class="span6">123</div>
-                   <div class="span6">678</div>
+    </div>
+</section>
+   <section class="block">
+       <div class="container-fluid">
+           <section class="span12 panel">
+               <img id="img" src="./img/ribbon-2013.png" class="ribbon" alt=""/>
+               <div class="padding-large text-center">
+                   <h1 class="mirror" >ABOUT US</h1>
                </div>
            </section>
+     div>
+   </section>
+<!--    <div class="container">
+       <section class="span12">
+           <div class="row">
+               <div class="span6">123</div>
+               <div class="span6">678</div>
+           </div>
+       </section>
 
-       </div>-->
+   </div>-->
 <!--    <div id="myCarousel" style="float: right;" data-interval="2000" class="carousel slide">
         <div class="carousel-inner">
             <div class="item active">

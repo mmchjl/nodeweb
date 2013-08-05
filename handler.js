@@ -11,7 +11,7 @@ var mongo = require("./lib/mongodb.js"),
     file = require("./handleapp/file.js");
 
 function handle(header,response){
-	var handler = header.handler;
+	var handler = header.handler.toLowerCase();
 	if(header.path=="/") {
 			header.path = "/index.html";
 			header.extname="html";

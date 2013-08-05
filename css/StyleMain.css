@@ -77,6 +77,35 @@
     margin-top: 10px;
     margin-bottom: 10px;
 }
+#rangeDiv{
+    margin-top: 40px;
+}
+.left_div{
+    right: 80px;
+}
+.right_div{
+    margin-top: 40px;
+   margin-left: 80px;
+}
+.right_div em{
+    float:right;
+    position: relative;
+    top:-20px;
+    right: 20px;
+}
+.right_div section{
+    margin-top: 20px;
+    background-color:#999999 ;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+.articletitle{
+    cursor:pointer;
+}
+.aside{
+    margin-top: 20px;
+}
 body{
     min-width: 1050px;
 }
