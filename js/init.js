@@ -680,6 +680,10 @@ NengLongTemplate.prototype.templateLoad = function(options, extendOnloadEvent) {
         contents.push($content);
     }
 
+    if (this.templateUnload(contents, options, true) == false) {
+        return;
+    }
+
     var dataUrl = options.dataUrl;
     if (typeof (options.data) != "undefined" && options.data != null && $.isPlainObject(options.data)) {
         this.templateOnLoadContextArray.push({ "options": options, "data": options.data, extendOnload: extendOnloadEvent });

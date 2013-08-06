@@ -70,12 +70,22 @@ var _handler = {
         var opt={
             collection:"article",
             query:{},
-            fields:{_id:1,title_str:1}
+            fields:{_id:1,title_str:1,views:1,"comments.commentId":1}
         };
         mongo.query(opt,function(err,data){
             if(err){
                 utility.handleException(err);
                 return response.endJson({result:false,data:{code:500}});
+            }
+            if(data){
+                for(var i=0;i<data.list.length;i++) {
+                    if(data.list[i].comments){
+                        data.list[i].replies = data.list[i].comments.length;
+                        delete data.list[i].comments;
+                    }else{
+                        data.list[i].replies = 0;
+                    }
+                }
             }
             response.endJson({
                 result:true,
@@ -94,8 +104,11 @@ var _handler = {
                 _id:1,
                 title_str:1,
                 updateTime_date:1,
-                tags:1
-            }
+                tags:1,
+                views:1,
+                "comments.commentId":1
+            },
+            sort:[["updateTime_date",-1]]
         };
         if(header.get("type_int")) opt.query.type_int =parseInt(header.get("type_int"));
         //if(header.get("tags"))
@@ -104,8 +117,17 @@ var _handler = {
                 utility.handleException(err);
                 return response.endJson({
                     result:false,
-                    data:data
                 })
+            }
+            if(data){
+                for(var i=0;i<data.list.length;i++) {
+                    if(data.list[i].comments){
+                        data.list[i].replies = data.list[i].comments.length;
+                        delete data.list[i].comments;
+                    }else{
+                        data.list[i].replies=0;
+                    }
+                }
             }
             response.endJson({
                 result:true,
@@ -118,17 +140,84 @@ var _handler = {
             collection:app.opt.collection,
             query:{
                 _id:header.get("id")
+            },
+            newObject:{
+                $inc:{views:1}
             }
         };
-        mongo.findOne(opt,function(err,data){
+        mongo.update(opt,function(err,data){
             if(err){
                 utility.handleException(err);
                 return response.endJson({result:false,data:{code:500}});
+            }else{
+                delete  opt.newObject;
+                mongo.findOne(opt,function(err,data){
+                    if(err){
+                        utility.handleException(err);
+                        return response.endJson({result:false,data:{code:500}});
+                    }
+                    if(utility.isNull(data)) return response.endJson({result:false});
+                    data.result = true;
+                    response.endJson(data);
+                })
             }
-            if(utility.isNull(data)) return response.endJson({result:false});
-            data.result = true;
-            response.endJson(data);
-        })
+        });
+    },
+    comment:function(header,response){
+        var temp = JSON.parse(header.fields.data);
+        if(temp){
+            temp = utility.objectValid(temp);
+        }else{
+            return response.endJson({result:false});
+        }
+        var id = temp.id;
+        delete temp.id
+        var opt = {
+            collection:app.opt.collection,
+            query:{_id:id},
+            newObject:{
+                $push:{
+                    comments:
+                    temp
+                }
+            }
+        }
+        mongo.update(opt,function(err,data){
+            if(err){
+                utility.handleException(err);
+                return response.endJson({result:false});
+            }
+            return response.endJson({result:true});
+        });
+    },
+    thumb:function(header,response){
+        var id = header.queryString.articleId_str,
+            commentId = header.queryString.commentId_str,
+            isYes = header.queryString.type_int==1?true:false;
+        var opt={
+                collection:app.opt.collection,
+                query:{
+                    _id:id,
+                    "comments.commentId":commentId
+                },
+                newObject:{
+                    $inc:{
+                       "comments.$.yes":1
+                    }
+                }
+            };
+         if(!isYes) {
+             opt.newObject.$inc["comments.$.no"] = 1;
+             delete opt.newObject.$inc["comments.$.yes"];
+         }
+        mongo.update(opt,function(err,data){
+            if(err){
+                utility.handleException(err);
+                return   response.endJson({result:false})
+            }
+            return response.endJson({result:true})
+        });
+
     }
 };
 

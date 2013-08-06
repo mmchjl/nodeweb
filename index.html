@@ -32,6 +32,10 @@
                 dataUrl:"./monitor/requeststate",
                 onload:function(){
                     init.init();
+                },
+                unload:function(){
+                    //alert("init unload");
+                    $("#body").children().fadeOut(500)
                 }
             },
             circle:{
@@ -62,6 +66,10 @@
                 dataUrl:"./article/detail",
                 onload:function(){
                     detail.init()
+                },
+                unload:function(){
+                    //alert("detail on unload");
+                    $("#mainDiv").children().fadeOut(500)
                 }
             },
             range:{
@@ -82,6 +90,10 @@
                 dataUrl:"./article/list",
                 onload:function(){
                     list.init();
+                },
+                unload:function(){
+                    //alert("list on unload");
+                    $("#mainDiv").children().fadeOut(500)
                 }
             },
             tags:{

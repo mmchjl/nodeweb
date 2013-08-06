@@ -108,8 +108,83 @@
 }
 body{
     min-width: 1050px;
+    background-image: url(../img/pattern.png);
 }
-.editTitle{
-
+.comment{
+    padding: 15px;
+   border: 3px solid #CFCFCF;
+    border-radius: 10px;
+}
+#comment_panel{
+}
+.commentshow{
+    padding: 5px;
+    margin-bottom: 25px;
+    border-radius: 5px;
+}
+.header{
+    padding:4px;
+    background-color: #CCCCCC;
+}
+.author a{
+    font-size: 12px;
+    float: right;
+    margin-right: 10px;
+}
+.author i{
+    float: right;
+    margin-right: 20px;
+    color: #808080;
+    font-style: italic;
+}
+.author a.reply {
+    display: none;
+}
+.comments-thumbs{
+    float: right;
+    margin-right: 10px;
+}
+.comments-thumbs i{
+    margin-right: 10px;
+    cursor: pointer;
+}
+.replytext{
+    position: relative;
+    width: 80%;
+    height: 50px;
+    left: 100px;
+}
+.btn_reply{
+    position: relative;
+    width: 100px;
+    left: 85%;
+}
+.replypanel{
+    display: none;
+}
+#rangeDiv{
+    border-radius: 5px;
+    background-color: white;
+}
+#rangeDiv li{
+    margin-left: 6px;
+}
+.comment-split{
+    margin: 0px;
+}
+.comment_time{
+    margin-left: 10px;
+    font-size: 12px;
+    font-style: italic;
+    color: #808080;
+}
+.neirong{
+    margin-left: 50px;
+}
+.unstyled em{
+    font-size: 12px;
+}
+.comment textarea{
+    width: 97%;
 }
 

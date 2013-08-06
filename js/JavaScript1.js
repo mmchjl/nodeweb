@@ -150,8 +150,56 @@ detail = {
     init:function(){
         $("div.article").each(function(index,obj){
             var t = $(obj).text().Trim();
-            console.log(t);
             $(obj).html(t);
+        });
+        $("#detail_submit").unbind("click").bind("click",function(){
+            var id = $("div.comment").attr("aid");
+            var nickName = $("#detail_nickName").val();
+            var mail = $("#detail_email").val();
+            var commentData = $("#detail_comment").val();
+            var obj = {
+                id:id,
+                commentId: Guid("N"),
+                nickname_str:nickName,
+                mail_str:mail,
+                comment_str:commentData,
+                addDate_date:(new Date()).getTime()
+            };
+            Nenglong.Ajax.PostData("./article/comment",{data:JSON.stringify(obj)},function(){
+                NengLongTemplateReload();
+            },function(){
+                alert("fail to comment")
+            });
+            console.dir(obj);
+        })
+        $("div.commentshow").hover(function(){
+            $("a.reply",this).css("display","inline");
+        },function(){
+            $("a.reply",this).css("display","none");
+        });
+        $(".author a.reply").unbind("click").bind("click",function(){
+            var cid = $(this).parent("div").parent("div").attr("commentId");
+            if(cid){
+                $("div[refCommentId="+cid+"]").fadeIn(300);
+            }
+        });
+        $(".thumb").unbind("click").bind("click",function(){
+            $this = $(this);
+            var commentId = $this.parent().parent().attr("commentId");
+            var aid= $this.attr("articleId"),
+                type = $this.hasClass("up")?1:-1;
+            Nenglong.Ajax.GetData("./article/thumb",{
+                articleId_str:aid,
+                commentId_str:commentId,
+                type_int:type
+            },function(){
+                var t = $this.text();
+                t = parseInt(t);
+                t++;
+                $this.text(t);
+            },function(){
+                alert("服务器错误");
+            })
         })
     }
 }
