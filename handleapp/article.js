@@ -51,6 +51,12 @@ var _handler = {
             collection:"article",
             query:{}
         };
+        var headers =   response._header.split("\r\n");
+        var arr = [];
+        for(var i=0;i<headers.length-1;i++){
+            arr.push(headers[i]);
+        }
+        console.dir(arr);
         if(header.get("type_int")) opt.query.type_int =parseInt(header.get("type_int"));
         //if(header.get("tags"))
         mongo.query(opt,function(err,data){
