@@ -152,6 +152,17 @@ detail = {
             var t = $(obj).text().Trim();
             $(obj).html(t);
         });
+        (function(){
+            var temp = $.cookies.get("thumb");
+            if(temp){
+                $(".commentshow").each(function(index,obj){
+                    var commentId = $(obj).attr("commentId");
+                    if(commentId&&temp.indexOf(commentId)!=-1){
+                       $("i[articleid]",obj).css("color","gray")
+                    }
+                });
+            }
+        })();
         $("#detail_submit").unbind("click").bind("click",function(){
             var id = $("div.comment").attr("aid");
             var nickName = $("#detail_nickName").val();
@@ -180,14 +191,21 @@ detail = {
         $(".author a.reply").unbind("click").bind("click",function(){
             var cid = $(this).parent("div").parent("div").attr("commentId");
             if(cid){
-                $("div[refCommentId="+cid+"]").fadeIn(300);
+                var $t = $("div[refCommentId="+cid+"]");
+                if($t.css("display")=="block"){
+                    $t.fadeOut(300);
+                }else{
+                    $t.fadeIn(300);
+                }
             }
         });
         $(".thumb").unbind("click").bind("click",function(){
             $this = $(this);
             var commentId = $this.parent().parent().attr("commentId");
+            if(!commentId) return;
             var aid= $this.attr("articleId"),
                 type = $this.hasClass("up")?1:-1;
+            if($.cookies.get("thumb")&&$.cookies.get("thumb").indexOf(commentId)!=-1) return;
             Nenglong.Ajax.GetData("./article/thumb",{
                 articleId_str:aid,
                 commentId_str:commentId,
@@ -197,6 +215,13 @@ detail = {
                 t = parseInt(t);
                 t++;
                 $this.text(t);
+                $("div[commentId="+commentId+"] i[articleid]").css("color","gray");
+                var t =  $.cookies.get("thumb");
+                if(!t){t=commentId.toString();
+                }else{
+                    t+="_"+commentId.toString();
+                }
+                $.cookies.set("thumb",t);
             },function(){
                 alert("服务器错误");
             })
