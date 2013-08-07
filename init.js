@@ -330,21 +330,6 @@ http.OutgoingMessage.prototype.removeCookie=function(name){
     }
 }
 
-http.OutgoingMessage.prototype.endJson=function(obj){
-    if(typeof obj=="object"){
-        this.end(JSON.stringify(obj));
-    }else{
-        this.end(obj);
-    }
-};
-
-http.OutgoingMessage.prototype.wirteJson=function(obj){
-    if(typeof obj=="object"){
-        this.wirte(JSON.stringify(obj));
-    }else{
-        this.wirte(obj);
-    }
-}
 
 function Md5(str,ali,outputFormat){
     var _ali = ali||"md5";
@@ -352,12 +337,6 @@ function Md5(str,ali,outputFormat){
      var hash = crypto.createHash(_ali);
     hash.update(str);
     return hash.digest(_outputForamt);
-}
-
-http.OutgoingMessage.prototype.removeCookie=function(name){
-    if(!this._header&&name){
-       this.setHeader("Set-Cookie",utility.Format("{0}={1};expires={2}",name,"",(new Date(14626611963)).toGMTString()));
-    }
 }
 
 http.OutgoingMessage.prototype.writeJson = function(){
