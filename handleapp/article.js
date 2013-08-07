@@ -21,6 +21,7 @@ var _handler = {
         newobject.type_int = t.type_int;
         newobject.title_str = t.title_str||"";
         newobject.content_str = t.content_str||"";
+        newobject.synopsis_str = t.synopsis_str||"";
         newobject.updateTime_date = parseInt(t.updateTime_date);
         newobject.tags=[];
         if(!utility.isNull(t.tags)){

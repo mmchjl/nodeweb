@@ -125,6 +125,7 @@ circle = {
                     badges.push($(obj).text());
                 });
                 var content = editor1.html();
+                var synopsis = $("#txt_synopsis").val();
                 if(title==""){
                     $("#txt_title").addClass("error");
                     return;
@@ -133,6 +134,7 @@ circle = {
                     title_str:title,
                     tags:badges,
                     content_str:content,
+                    synopsis_str:synopsis,
                     type_int:type,
                     updateTime_date:(new Date()).getTime()
                 };
@@ -262,6 +264,14 @@ list={
                 });
             }
         });
+        (function(){
+            $(".list_check").hide()
+        })()
+        $(".articleItem").hover(function(){
+            $(".list_check",this).show();
+        },function(){
+            $(".list_check",this).hide();
+        })
     }
 };
 
