@@ -8,7 +8,8 @@ var mongo = require("./lib/mongodb.js"),
     captcha = require("./handleapp/captcha.js"),
     blog=require("./handleapp/blog.js"),
     article=require("./handleapp/article.js"),
-    file = require("./handleapp/file.js");
+    file = require("./handleapp/file.js"),
+    authorization = require("./handleapp/authorization.js");
 
 function handle(header,response){
 	var handler = header.handler.toLowerCase();
@@ -47,7 +48,10 @@ function handle(header,response){
             article.handle(header,response);
             break;
         case "/file":
-            file.handle(header,response)
+            file.handle(header,response);
+            break;
+        case "/authorization":
+            authorization.handle(header,response);
             break;
 		default:
 		defaultHandler.handle(header,response);

@@ -105,13 +105,23 @@
     float: left;
 }
 .list_Synopsis{
-    margin-top: 20px;
+    margin-top: 25px;
     margin-left: 15px;
 }
 .list_title{
     font-size: 20px;
     margin-left: 10px;
+    cursor: pointer;
+    color: #000000;
+    -moz-transition:  all ease-in 0.5s;
+    -o-transition:  all ease-in 0.5s;
+    -webkit-transition:  all ease-in 0.5s;
+    transition:  all ease-in 0.5s;
 }
+.list_title:hover{
+    color: #ffffff;
+}
+
 .right_div section{
     margin-top: 10px;
     background-color:#999999 ;
@@ -209,10 +219,48 @@ body{
 .neirong{
     margin-left: 50px;
 }
+.article{
+   margin-top: 50px;
+}
+.article img{
+    box-shadow: 1px 1px 15px hsla(0,21%,60%,.6)
+}
 .unstyled em{
     font-size: 12px;
+}
+.user_login{
+    float: right;
+    margin-right: 150px;
+    position: relative;
+    top: 10px;
+    cursor: pointer;
+    text-shadow: 0 0 2px white;
+    -moz-transition:  all ease-in 0.5s;
+    -o-transition:  all ease-in 0.5s;
+    -webkit-transition:  all ease-in 0.5s;
+    transition:  all ease-in 0.5s;
+}
+.user_login:hover{
+    color: #000000;
+    text-shadow: 0 0 5px black;
 }
 .comment textarea{
     width: 97%;
 }
+.datail_line{
+    border-bottom: 1px solid #000000;
+    border-top: 0px;
+    margin: 3px;
+}
+.detail_tag{
+    font-size: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
 
+.detail_time{
+    float: right;
+    margin-right: 10px;
+    position: relative;
+    top: 5px;
+}

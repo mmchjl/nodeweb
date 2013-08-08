@@ -4,13 +4,15 @@ init={
         window.onresize = function(){
             var temp = $("div.left_div");
             if(temp.length>=0){
-                if(window.innerWidth<=1050){
+                if(window.innerWidth<=1000){
                     $("div.left_div").hide();
-                }else if(window.innerWidth>1050&&temp.css("display")=="none"){
+                    $(".user_login").hide();
+                }else if(window.innerWidth>1000&&temp.css("display")=="none"){
                     $("div.left_div").show();
+                    $(".user_login").show();
                 }
             }
-        }
+        };
         $("a.about").unbind("click").bind("click",function(){
             NengLongTemplateLoad({
                 app:"index",
@@ -26,6 +28,18 @@ init={
                     type_int:type
                 }
             });
+        });
+        $("#loginPanel").on("hidden",function(){
+            $("#loginUserName").val("");
+            $("#loginPassword").val("");
+        })
+        $("#btn_login").unbind("click").bind("click",function(){
+            var acc = $("#loginUserName").val();
+            var pwd = $("#loginPassword").val();
+            Nenglong.Ajax.PostData("./authorization/login",{account:acc,password:pwd},function(data){
+                $("#loginPanel").modal("hide");
+                console.dir(data);
+            })
         });
     }
 };
@@ -252,7 +266,7 @@ range={
 Namespace.Register("list");
 list={
     init:function(){
-        $(".articleItem").unbind("click").bind("click",function(){
+        $(".list_title").unbind("click").bind("click",function(){
             var id = this.getAttribute("aid");
             if(id){
                 NengLongTemplateLoad({

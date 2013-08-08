@@ -302,7 +302,7 @@ Array.prototype.Each = function(fun) {
 
 //Set-Cookie: userName=admin; expires=Thu, 26-Apr-2012 15:52:34 GMT; path=/
 http.OutgoingMessage.prototype.setCookie =function(cookie){
-    var _name = cookie.name,
+    var _name = cookie.name||cookie.key,
         _value = cookie.value,
         _expires = cookie.expires,
         _secure = cookie.secure,
@@ -310,8 +310,8 @@ http.OutgoingMessage.prototype.setCookie =function(cookie){
         _path = cookie.path?cookie.path:"/";
     var header = "Set-Cookie";
     var value = "";
-    if(_name&&_value) value+=utility.Format(" {0}={1}",_name,_value);
-    if(_expires) value=utility.Format("{0}; {1}={2}",value,"expire",_expires);
+    if(_name&&_value) value+=utility.Format("{0}={1}",_name,_value);
+    if(_expires) value=utility.Format("{0}; {1}={2}",value,"expires",_expires);
     if(_domain) value = utility.Format("{0}; {1}={2}",value,"domain",_domain);
     if(_path) value=utility.Format("{0}; {1}={2}",value,"path",_path);
     if(_secure) value = utility.Format("{0};{1}",value,"secure");
@@ -320,16 +320,67 @@ http.OutgoingMessage.prototype.setCookie =function(cookie){
     if(!this._header){
         this.setHeader(header,value);
     }else{
-        utility.handleException(new Error("can not set header after header had send to client"));
+        this.setHeaderItem({key:header,value:value});
     }
 }
 
 http.OutgoingMessage.prototype.removeCookie=function(name){
+    var key = "Set-Cookie";
+    var value = utility.Format("{0}={1};expires={2};path=/",name,"",(new Date(14626611963)).toGMTString());
     if(!this._header&&name){
-       this.setHeader("Set-Cookie",utility.Format("{0}={1};expires={2}",name,"",(new Date(14626611963)).toGMTString()));
+       this.setHeader(key,value);
+    }else{
+       this.setHeaderItem({
+           key:key,
+           value:value
+       });
     }
 }
 
+http.OutgoingMessage.prototype.setHeaderItem=function(){
+    var obj = arguments[0];
+    var _newLine = "\r\n";
+    var _itemSeperator=": ";
+    var _cookieHeader="Set-Cookie";
+    if(obj&&obj.key&&obj.value){
+        var _header = this._header;
+        if(!_header){
+            this.setHeader(obj.key,obj.value);
+            return;
+        }
+        var _headerArr = _header.split(_newLine);
+        var _newHeader = [];
+        var _firstLine = _headerArr[0];
+        var _headerObjArr = [];
+        _headerArr.forEach(function(obj){
+            if(obj.indexOf(_itemSeperator)!=-1){
+                _headerObjArr.push({
+                    key:obj.split(_itemSeperator)[0],
+                    value:obj.split(_itemSeperator)[1]
+                });
+            }
+        })
+        var isExists = _headerObjArr.Exists(function(item){return item.key==obj.key});
+        if(obj.key!=_cookieHeader&&isExists){
+            console.log("change");
+            _headerObjArr.Find(function(item){return item.key==obj.key;}).value=obj.value;
+        }else{
+            _headerObjArr.push({
+                key:obj.key,
+                value:obj.value
+            });
+        }
+        _newHeader.push(_firstLine);
+        _headerObjArr.forEach(function(item){
+            var line = Format("{0}{1}{2}",item.key,_itemSeperator,item.value);
+            _newHeader.push(line);
+        });
+        var _result = _newHeader.join(_newLine)+_newLine+_newLine;
+        this._header = _result;
+        //console.log(_result);
+        //console.log("=========================================");
+    }
+}
 
 function Md5(str,ali,outputFormat){
     var _ali = ali||"md5";

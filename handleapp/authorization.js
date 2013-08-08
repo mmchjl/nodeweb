@@ -6,23 +6,12 @@
  * To change this template use File | Settings | File Templates.
  */
 
-var mongo  = require("../lib/mongoClient.js");
-
-function handle(header,response){
-   response.writeHead(200,{
-       "Content-Type":"text/plain"
-   });
-    var action = header.action;
-    if(_handler[action]!=undefined){
-        _handler[action](header,response);
-    }else{
-        response.end();
-    }
-}
+var mongo  = require("../lib/mongoClient.js"),
+    handleBase = require("./handleAppBase.js").handleBase;
 
 var _handler = {
     login:function(header,response){
-          var option={
+/*          var option={
               collection:"user",
               query:{
                   account:header.queryString.account,
@@ -36,7 +25,15 @@ var _handler = {
             }else{
                 response.endJson({result:true,code:200});
             }
-        })
+        })*/
+        var uid = header.fields.account;
+        var pwd = header.fields.password;
+        console.dir({
+            uid:uid,
+            pwd:utility.MD5(pwd)
+        });
+        header.session.session.authorization = true;
+        response.endJson({result:true,data:{author:true}});
     },
     check:function(header,response){
         var account = header.queryString.account;
@@ -71,5 +68,11 @@ var _h = {
         })
     }
 };
+
+var app = new handleBase("user",_handler);
+
+function handle(header,response){
+    return app.handle(header,response);
+}
 
 module.exports.handle = handle;

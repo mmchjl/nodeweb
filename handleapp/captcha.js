@@ -8,20 +8,8 @@
 var mongo = require("../lib/mongoClient.js"),
     //cap = require("../lib/captcha.js"),
     fs = require("fs"),
-    edge = require('edge');
-
-
-function handle(header,response){
-/*            response.writeHead(200,{
-                "Content-Type":"text/plain"
-            });*/
-            var action = header.action;
-            if(_handler[action]!=undefined){
-                _handler[action](header,response);
-    }else{
-        response.end();
-    }
-}
+    edge = require('edge'),
+    handleBase = require("./handleAppBase.js").handleBase;
 
 var _handler = {
     getlist:function(header,response){
@@ -124,9 +112,13 @@ var _handler = {
          */});
 
         getValidataCode("ff", function (error, result) {
-            response.writeHead(200,{
+/*            response.writeHead(200,{
                 "Content-Type":"image/png"
-            });
+            });*/
+            response.setHeaderItem({
+                key:"Content-Type",
+                value:"image/png"
+            })
             header.session.session.vcode = result.vcode;
             return response.end(result.aBuffer);
         })
@@ -360,5 +352,11 @@ captcha.intial = function(){ //初始化，异步脚本删除验证码
         }, 1000*60*30);//每半小时清理一次验证码数据库，删除超时验证码数据
     });
 }();
+
+var app = new handleBase("piccaptcha",_handler);
+
+function handle(header,response){
+    return app.handle(header,response);
+}
 
 exports.handle=handle;

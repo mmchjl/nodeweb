@@ -52,14 +52,8 @@ var _handler = {
             collection:"article",
             query:{}
         };
-        var headers =   response._header.split("\r\n");
-        var arr = [];
-        for(var i=0;i<headers.length-1;i++){
-            arr.push(headers[i]);
-        }
-        console.dir(arr);
+        response.removeCookie("sessionId");
         if(header.get("type_int")) opt.query.type_int =parseInt(header.get("type_int"));
-        //if(header.get("tags"))
         mongo.query(opt,function(err,data){
             if(err){
                 utility.handleException(err);
@@ -113,7 +107,8 @@ var _handler = {
                 updateTime_date:1,
                 tags:1,
                 views:1,
-                "comments.commentId":1
+                "comments.commentId":1,
+                synopsis_str:1
             },
             sort:[["updateTime_date",-1]]
         };

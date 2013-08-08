@@ -1,12 +1,13 @@
 ﻿<div class="right_div">
 {#if $T.result}
         <div>
-            <h2>{$T.title_str}</h2>
+            <h2 class="text-center">{$T.title_str}</h2>
             {#for j=1 to $T.tags.length}
-                <span class="badge">{$T.tags[$T.j-1].name_str}</span>
+                <i class="icon-tag detail_tag">{$T.tags[$T.j-1].name_str}</i>
             {#/for}
-            <hr/>
-            <div class="article">
+                <i class="icon-time detail_time">{ new Date($T.updateTime_date).format("yyyy年MM月dd日")}</i>
+            <hr class="datail_line"/>
+            <div class="article padding-small">
                 {$T.content_str}
             </div>
         </div>

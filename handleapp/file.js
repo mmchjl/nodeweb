@@ -8,19 +8,8 @@
 
 var mongo  = require("../lib/mongoClient.js"),
     fs = require("fs"),
-    path = require("path");
-
-function handle(header,response){
-    response.writeHead(200,{
-        "Content-Type":"text/plain"
-    });
-    var action = header.action;
-    if(_handler[action]!=undefined){
-        _handler[action](header,response);
-    }else{
-        response.end();
-    }
-}
+    path = require("path"),
+    handleBase = require("./handleAppBase.js").handleBase;
 
 var _handler = {
     uploadimg:function(header,response){
@@ -50,5 +39,11 @@ var _handler = {
         });
     }
 };
+
+var app = new handleBase("file",_handler);
+
+function handle(header,response){
+    app.handle(header,response);
+}
 
 module.exports.handle = handle;

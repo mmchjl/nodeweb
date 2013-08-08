@@ -29,6 +29,7 @@
                 cmd:"init",
                 content:"body",
                 templateUrl:"./template/index.htm",
+                data:{},
                 dataUrl:"./monitor/requeststate",
                 onload:function(){
                     init.init();
@@ -36,6 +37,15 @@
                 unload:function(){
                     //alert("init unload");
                     $("#body").children().fadeOut(500)
+                }
+            },
+            main:{
+                app:"index",
+                cmd:"main",
+                content:"mainDiv",
+                templateUrl:"./template/main.htm",
+                data:{},
+                onload:function(){
                 }
             },
             circle:{
@@ -61,15 +71,13 @@
             detail:{
                 app:"index",
                 cmd:"detail",
-                content:"mainDiv",
+                content:"contentDiv",
                 templateUrl:"./template/detail.htm",
                 dataUrl:"./article/detail",
                 onload:function(){
                     detail.init()
                 },
                 unload:function(){
-                    //alert("detail on unload");
-                    $("#mainDiv").children().fadeOut(500)
                 }
             },
             range:{
@@ -85,15 +93,13 @@
             list:{
                 app:"index",
                 cmd:"list",
-                content:"mainDiv",
+                content:"contentDiv",
                 templateUrl:"./template/list.htm",
                 dataUrl:"./article/list",
                 onload:function(){
                     list.init();
                 },
                 unload:function(){
-                    //alert("list on unload");
-                    $("#mainDiv").children().fadeOut(500)
                 }
             },
             tags:{

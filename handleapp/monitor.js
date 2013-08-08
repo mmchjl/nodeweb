@@ -6,12 +6,8 @@
  * To change this template use File | Settings | File Templates.
  */
 var mongo =require("../lib/mongoClient.js"),
-    util = require("util");
-var i=0;
-
-
-
-var data =undefined;
+    util = require("util"),
+    handleBase = require("./handleAppBase.js").handleBase;
 
 var _handler = {
     requeststate:function(header,response){
@@ -26,6 +22,14 @@ var _handler = {
             },
             sort:[["time","desc"]]
         };
+        if(!header.cookie.Cid){
+            var f = (new Date()).getTime()+3600*24*1000*30;
+            response.setCookie({
+                key:"Cid",
+                value:utility.Guid("b"),
+                expires:new Date(f).toGMTString()
+            })
+        }
         mongo.query(opt,function(err,pagedata){
                 if(err){
                     utility.handleException(err);
@@ -38,19 +42,10 @@ var _handler = {
     }
 };
 
+var app = new handleBase("static",_handler);
+
 function handle(header,response){
-    response.writeHead(200,{
-        "Content-Type":"text/plain"
-    });
-    if(header.auth){
-        console.log(header.session);
-    }
-    var action = header.action;
-    if(_handler[action]!=undefined){
-        _handler[action](header,response);
-    }else{
-        response.end();
-    }
+   app.handle(header,response);
 }
 
 exports.handle = handle;
