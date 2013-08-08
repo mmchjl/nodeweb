@@ -45,7 +45,17 @@
                 content:"mainDiv",
                 templateUrl:"./template/main.htm",
                 data:{},
-                onload:function(){
+                onload:function(data){
+                    var type = data.params.type_int;
+                    if(type){
+                        NengLongTemplateLoad({
+                            app:"index",
+                            cmd:"list",
+                            params:{
+                                type_int:type
+                            }
+                        });
+                    }
                 }
             },
             circle:{
@@ -102,6 +112,27 @@
                 unload:function(){
                 }
             },
+            about:{
+                app:"index",
+                cmd:"about",
+                content:"mainDiv",
+                data:{},
+                dataUrl:"",
+                templateUrl:"./template/about.htm",
+                onload:function(){
+                    //alert("on about")
+                }
+            },
+            home:{
+                app:"index",
+                cmd:"home",
+                content:"mainDiv",
+                data:{},
+                templateUrl:"./template/home.htm",
+                onload:function(){
+
+                }
+            },
             tags:{
                 app:"index",
                 cmd:"tags",
@@ -148,14 +179,7 @@
     </div>
 </section>
    <section class="block">
-       <div class="container-fluid">
-           <section class="span12 panel">
-               <img id="img" src="./img/ribbon-2013.png" class="ribbon" alt=""/>
-               <div class="padding-large text-center">
-                   <h1 class="mirror" >ABOUT US</h1>
-               </div>
-           </section>
-     div>
+
    </section>
 <!--    <div class="container">
        <section class="span12">

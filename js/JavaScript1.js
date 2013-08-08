@@ -16,19 +16,26 @@ init={
         $("a.about").unbind("click").bind("click",function(){
             NengLongTemplateLoad({
                 app:"index",
-                cmd:"circle"
+                cmd:"about"
+            });
+        })
+        $("a.home").unbind("click").bind("click",function(){
+            NengLongTemplateLoad({
+                app:"index",
+                cmd:"home"
             });
         })
         $("a.head").unbind("click").bind("click",function(){
             var type = this.getAttribute("aType");
             NengLongTemplateLoad({
                 app:"index",
-                cmd:"list",
+                cmd:"main",
                 params:{
                     type_int:type
                 }
             });
         });
+
         $("#loginPanel").on("hidden",function(){
             $("#loginUserName").val("");
             $("#loginPassword").val("");
@@ -293,3 +300,11 @@ Namespace.Register("tags");
 tags={
     init:function(){}
 };
+
+Namespace.Register("home");
+home={
+    init:function(){
+
+    }
+};
+

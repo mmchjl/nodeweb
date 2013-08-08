@@ -9,8 +9,8 @@
 }
 .panel{
     position: relative;
-    height: 350px;
-    background: #006dcc;
+    height: 100%;
+    background: rgba(119, 216, 162, 0.7);
 }
 .padding-small{
     padding:10px
@@ -253,7 +253,7 @@ body{
     margin: 3px;
 }
 .detail_tag{
-    font-size: 5px;
+    font-size: 12px;
     margin-left: 5px;
     margin-right: 5px;
 }
@@ -263,4 +263,33 @@ body{
     margin-right: 10px;
     position: relative;
     top: 5px;
+}
+.code{
+    padding: 0px;
+    margin: 0px;
+    background-color: inherit;
+    border: 0px;
+    font-size: 20px;
+}
+.js{
+    z-index: 20;
+    opacity: 0.88;
+    rgba(10, 1, 8, 0.78);
+}
+.net{
+    position: relative;
+    left: 300px;
+    opacity: 0.5;
+    z-index: 10;
+    rgba(240, 3, 3, 0.97);
+}
+.json{
+    position: relative;
+    opacity: 0.5;
+    color: rgba(55, 8, 245, 0.97);
+}
+.word{
+    position: relative;
+    left: 700px;
+    bottom: 200px;
 }

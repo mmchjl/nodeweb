@@ -33,7 +33,7 @@ var _handler = {
             pwd:utility.MD5(pwd)
         });
         header.session.session.authorization = true;
-        response.endJson({result:true,data:{author:true}});
+        response.endJson({result:true});
     },
     check:function(header,response){
         var account = header.queryString.account;
