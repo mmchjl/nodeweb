@@ -773,8 +773,28 @@ NengLongTemplate.prototype.templateProcess = function(options, data, contents) {
     for (var i = 0; i < contents.length; i++) {
         contents[i].processTemplate(data);
         var domList = $("[template=true][load=true]", contents[i]).toArray();
-        for (var j = 0; j < domList.length; j++) {
-            this.load(getDomAppAndCmd(domList[j]));
+        //debugger;
+        var pros = Object.keys(options.params);
+        if(pros.length>0&&pros.Exists(function(obj){return obj.indexOf(".")})){
+            for (var j = 0; j < domList.length; j++) {
+                var opt = getDomAppAndCmd(domList[j]);
+                var Npros = pros.FindAll(function(obj){return obj.indexOf(opt.cmd)!=-1});
+                if(Npros&&Npros.length>0){
+                    for(var n=0;n<Npros.length;n++){
+                        var _t = Npros[n];
+                        var cmds = _t.split(".");
+                        cmds.shift();
+                        if(!opt.params) opt.params={};
+                        opt.params[cmds.join(".")] = options.params[Npros];
+                        delete options.params[Npros];
+                    }
+                }
+                this.load(opt,true);
+            }
+        }else{
+            for (var j = 0; j < domList.length; j++) {
+                this.load(getDomAppAndCmd(domList[j]));
+            }
         }
     };
     this.loadingTemplateCount--;

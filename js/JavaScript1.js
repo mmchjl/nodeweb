@@ -31,7 +31,8 @@ init={
                 app:"index",
                 cmd:"main",
                 params:{
-                    type_int:type
+                    "list.type_int":type,
+                    he:"hesef"+type
                 }
             });
         });

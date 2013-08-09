@@ -128,14 +128,15 @@ var defaultHandler = {
 					if(err){
 						response.writeHead(404,{
 							"Content-Type":" text/plain"
-						})
+						});
 						response.end("file read err");
 					}
 					else{
+                        console.dir(fs.stat());
 						response.writeHead(200,{
 							"Content-Type": defaultHandler.getmime(header.extname)
-						})
-						response.write(file)
+						});
+						response.write(file);
 						response.end();
 					}
 				})
