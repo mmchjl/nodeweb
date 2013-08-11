@@ -14,7 +14,7 @@
     <script type="text/javascript" src="./js/jquery.js"></script>
     <script type="text/javascript" src="./js/bootstrap.min.js"> </script>
     <script src="js/jquery-jtemplates.js" type="text/javascript"></script>
-    <script type="text/javascript" src="js/bootstrap-wysiwyg.js"></script>
+    <!--<script type="text/javascript" src="js/bootstrap-wysiwyg.js"></script>-->
     <script src="js/init.js" type="text/javascript"></script>
     <script src="js/JavaScript1.js" type="text/javascript"></script>
 
@@ -46,16 +46,7 @@
                 templateUrl:"./template/main.htm",
                 data:{},
                 onload:function(data){
-                    var type = data.params.type_int;
-                    if(type){
-                        NengLongTemplateLoad({
-                            app:"index",
-                            cmd:"list",
-                            params:{
-                                type_int:type
-                            }
-                        });
-                    }
+
                 }
             },
             circle:{
@@ -130,7 +121,7 @@
                 data:{},
                 templateUrl:"./template/home.htm",
                 onload:function(){
-
+                    home.init();
                 }
             },
             tags:{
@@ -140,6 +131,16 @@
                 dataUrl:"./article/tags",
                 onload:function(){
                     tags.init();
+                }
+            },
+            admin:{
+                app:"index",
+                cmd:"admin",
+                content:"body",
+                templateUrl:"./template/admin.htm",
+                dataUrl:"./article/admin",
+                onload:function(){
+                    admin.init();
                 }
             }
         }

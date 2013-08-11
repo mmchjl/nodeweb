@@ -36,7 +36,6 @@ init={
                 }
             });
         });
-
         $("#loginPanel").on("hidden",function(){
             $("#loginUserName").val("");
             $("#loginPassword").val("");
@@ -47,6 +46,13 @@ init={
             Nenglong.Ajax.PostData("./authorization/login",{account:acc,password:pwd},function(data){
                 $("#loginPanel").modal("hide");
                 console.dir(data);
+                $("#index_nav").append("<li id='admin'><a href='javascript:;' class=''>admin</a></li>");
+                $("#admin").unbind("click").bind("click",function(){
+                    NengLongTemplateLoad({
+                        app:"index",
+                        cmd:"admin"
+                    });
+                });
             })
         });
     }
@@ -305,7 +311,19 @@ tags={
 Namespace.Register("home");
 home={
     init:function(){
+        $("#myCarousel").carousel({
+            interval: 3000
+        })
+    }
+};
 
+Namespace.Register("admin");
+admin = {
+    init:function(){
+        $('#admin_nav a').click(function (e) {
+            e.preventDefault();
+            $(this).tab('show');
+        })
     }
 };
 

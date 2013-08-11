@@ -658,7 +658,6 @@ NengLongTemplate.prototype.templateLoad = function(options, extendOnloadEvent) {
         return;
     };
     var contents = [];
-
     for (var i = 0; i < contentList.length; i++) {
         var $content = $("#" + $.trim(contentList[i]));
         if (options.isPanel && $content.length == 0) {

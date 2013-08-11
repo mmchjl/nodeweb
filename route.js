@@ -90,6 +90,7 @@ function header(request,response){
                 this.session.session = __session.session;
                 this.session.sessionId = __session.sessionId;
                 //utility.debug("path:"+this.path+"：header 中存在sessionid，同时服务器端有与之对应的session:"+__session.sessionId)
+                if(__session.session.authorization) this.auth=true;
                 this.emit("finish",this,response);
            }
        }.bind(this))

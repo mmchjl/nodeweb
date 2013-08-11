@@ -47,12 +47,12 @@ var _handler = {
             console.dir(data);
         });
     },
+    "add.isAuth":true,
     getlist:function(header,response){
         var opt={
             collection:"article",
             query:{}
         };
-        response.removeCookie("sessionId");
         if(header.get("type_int")) opt.query.type_int =parseInt(header.get("type_int"));
         mongo.query(opt,function(err,data){
             if(err){
@@ -196,6 +196,8 @@ var _handler = {
         var id = header.queryString.articleId_str,
             commentId = header.queryString.commentId_str,
             isYes = header.queryString.type_int==1?true:false;
+        var temp = utility.Format("{0}_{1}",id,commentId);
+        if(header.session.session[temp]) return response.endJson({result:false,msg:"ni has thumb before"});
         var opt={
                 collection:app.opt.collection,
                 query:{
@@ -219,10 +221,56 @@ var _handler = {
             }
             return response.endJson({result:true})
         });
+        header.session.session[temp] = true;
+    },
+    admin:function(header,response){
+        var opt={
+            collection:app.opt.collection,
+            query:{},
+            fields:{
+                _id:1,
+                title_str:1,
+                updateTime_date:1,
+                tags:1,
+                views:1,
+                type_int:1,
+                "comments.commentId":1,
+                synopsis_str:1
+            },
+            sort:[["updateTime_date",-1]]
+        };
+        var result = {
+            result:true,
+            data:{
+                tech:[],
+                life:[],
+                interst:[],
+                common:[]
+            }
+        };
+        mongo.query(opt,function(err,data){
+            if(err){
+                utility.handleException(err);
+                return response.endJson({result:false,code:500});
+            }
+            for(var i=0;i<data.count;i++){
+                var t = data.list[i];
+                if(t.type_int==1){
+                    result.data.tech.push(t);
+                }else if(t.type_int==2){
+                    result.data.life.push(t);
+                }else if(t.type_int==3){
+                    result.data.interst.push(t);
+                }
+            }
 
-    }
+            response.endJson(result);
+        })
+    },
+    "admin.isAuth":false
 };
 
 var app = new handleBase("article",_handler);
+app.isAuthorization = false;
 
 module.exports.handle = handle;

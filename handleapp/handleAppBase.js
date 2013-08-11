@@ -14,6 +14,7 @@ function handleBase(collection,handler){
     this.opt={};
     this.opt.collection = collection||"";
     this._handler=handler||{};
+    this.isAuthorization = true;
 }
 
 handleBase.prototype.handle=function(header,response){
@@ -22,9 +23,26 @@ handleBase.prototype.handle=function(header,response){
     });
     var action = header.action.toLowerCase();
     if(this._handler[action]!=undefined){
-        this._handler[action](header,response);
+        if(!this.isAuthorization){
+            var auth = utility.Format("{0}.isAuth",action);
+            if(this._handler[auth]){
+                if(header.auth){
+                    return this._handler[action](header,response);
+                }else{
+                    return response.endJson({result:false,code:100});
+                }
+            }else{
+                return this._handler[action](header,response);
+            }
+        }else{
+            if(this.isAuthorization&&header.auth){
+                return this._handler[action](header,response);
+            }else{
+                return response.endJson({result:false,code:100});
+            }
+        }
     }else{
-        response.end();
+        return response.end();
     }
 };
 

@@ -132,7 +132,6 @@ var defaultHandler = {
 						response.end("file read err");
 					}
 					else{
-                        console.dir(fs.stat());
 						response.writeHead(200,{
 							"Content-Type": defaultHandler.getmime(header.extname)
 						});

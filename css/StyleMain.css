@@ -293,3 +293,18 @@ body{
     left: 700px;
     bottom: 200px;
 }
+.blog_thumb{
+    box-shadow: 0 0 5px #D345C2;
+    -moz-box-shadow: 0 0 5px #D345C2;
+    -moz-transition:  all ease-in 0.5s;
+    -o-transition:  all ease-in 0.5s;
+    -webkit-transition:  all ease-in 0.5s;
+    transition:  all ease-in 0.5s;
+}
+.blog_thumb:hover{
+    box-shadow: 0 0 5px #000000;
+    -moz-box-shadow: 0 0 5px #000000;
+}
+.blog_home_seft{
+    font-family: museo-slab,"Helvetica Neue",Helvetica,Arial,sans-serif;
+}

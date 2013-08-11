@@ -404,6 +404,8 @@ http.OutgoingMessage.prototype.endJson=function(){
     this.end();
 };
 
+Function.prototype.isAuth = true;
+
 function extend(template,target){
     if(template){
         if(target){

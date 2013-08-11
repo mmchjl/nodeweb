@@ -1,0 +1,96 @@
+﻿<div class="container admin">
+        <ul class="nav nav-tabs" id="admin_nav">
+            <li><a href="#tab_tech" class="active">技术</a></li>
+            <li><a href="#tech_life">生活</a></li>
+            <li><a href="#tech_interst">兴趣</a></li>
+        </ul>
+        <div class="tab-content">
+            <div id="tab_tech" class="tab-pane">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>标题</th>
+                        <th>标签</th>
+                        <th>添加日期</th>
+                        <th colspan="2">操作</th>
+                    </tr>
+                    </thead>
+                    {#for i = 1 to $T.data.tech.length}
+                    <tr tid="{$T.data.tech[$T.i-1]._id}">
+                        <td>{$T.i}</td>
+                        <td>{$T.data.tech[$T.i-1].title_str}</td>
+                        <td>
+                            {#for j = 1 to $T.data.tech[$T.i-1].tags.length}
+                    <span>
+                        {$T.data.tech[$T.i-1].tags[$T.j-1].name_str}
+                    </span>
+                            {#/for}
+                        </td>
+                        <td>{(new Date($T.data.tech[$T.i-1].updateTime_date)).format("yyyy-MM-dd hh:mm:ss")}</td>
+                        <td><a href="#modalUpdate" data-toggle="modal" class="btn-link update">修改</a></td>
+                        <td><a class="btn-link delete">删除</a></td>
+                    </tr>
+                    {#/for}
+                </table>
+            </div>
+            <div id="tech_life" class="tab-pane">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>标题</th>
+                        <th>标签</th>
+                        <th>添加日期</th>
+                        <th colspan="2">操作</th>
+                    </tr>
+                    </thead>
+                    {#for i = 1 to $T.data.life.length}
+                    <tr tid="{$T.data.life[$T.i-1]._id}">
+                        <td>{$T.i}</td>
+                        <td>{$T.data.life[$T.i-1].title_str}</td>
+                        <td>
+                            {#for j = 1 to $T.data.life[$T.i-1].tags.length}
+                    <span>
+                        {$T.data.life[$T.i-1].tags[$T.j-1].name_str}
+                    </span>
+                            {#/for}
+                        </td>
+                        <td>{(new Date($T.data.life[$T.i-1].updateTime_date)).format("yyyy-MM-dd hh:mm:ss")}</td>
+                        <td><a href="#modalUpdate" data-toggle="modal" class="btn-link update">修改</a></td>
+                        <td><a class="btn-link delete">删除</a></td>
+                    </tr>
+                    {#/for}
+                </table>
+            </div>
+            <div id="tech_interst" class="tab-pane">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>标题</th>
+                        <th>标签</th>
+                        <th>添加日期</th>
+                        <th colspan="2">操作</th>
+                    </tr>
+                    </thead>
+                    {#for i = 1 to $T.data.interst.length}
+                    <tr tid="{$T.data.interst[$T.i-1]._id}">
+                        <td>{$T.i}</td>
+                        <td>{$T.data.interst[$T.i-1].title_str}</td>
+                        <td>
+                            {#for j = 1 to $T.data.interst[$T.i-1].tags.length}
+                    <span>
+                        {$T.data.interst[$T.i-1].tags[$T.j-1].name_str}
+                    </span>
+                            {#/for}
+                        </td>
+                        <td>{(new Date($T.data.interst[$T.i-1].updateTime_date)).format("yyyy-MM-dd hh:mm:ss")}</td>
+                        <td><a href="#modalUpdate" data-toggle="modal" class="btn-link update">修改</a></td>
+                        <td><a class="btn-link delete">删除</a></td>
+                    </tr>
+                    {#/for}
+                </table>
+            </div>
+        </div>
+</div>

@@ -81,6 +81,14 @@ var powerList={
 
 };
 
+var statuCode={
+    noAuth:100,
+    serverError:500,
+    success:200,
+    fail:300,
+    noExists:404
+};
+
 module.exports.config = {
     mime:mime,
     forbiden:forbiden,

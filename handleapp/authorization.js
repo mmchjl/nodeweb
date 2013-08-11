@@ -70,6 +70,7 @@ var _h = {
 };
 
 var app = new handleBase("user",_handler);
+app.isAuthorization = false;
 
 function handle(header,response){
     return app.handle(header,response);
