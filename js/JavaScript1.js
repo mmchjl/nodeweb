@@ -43,14 +43,16 @@ init={
         $("#btn_login").unbind("click").bind("click",function(){
             var acc = $("#loginUserName").val();
             var pwd = $("#loginPassword").val();
-            Nenglong.Ajax.PostData("./authorization/login",{account:acc,password:pwd},function(data){
+            Nenglong.Ajax.PostData("./authorization/login",{account:acc,password:pwd},function(){
                 $("#loginPanel").modal("hide");
-                console.dir(data);
                 $("#index_nav").append("<li id='admin'><a href='javascript:;' class=''>admin</a></li>");
                 $("#admin").unbind("click").bind("click",function(){
                     NengLongTemplateLoad({
                         app:"index",
-                        cmd:"admin"
+                        cmd:"admin",
+                        params:{
+                            typeId:"type1"
+                        }
                     });
                 });
             })
@@ -319,11 +321,82 @@ home={
 
 Namespace.Register("admin");
 admin = {
-    init:function(){
+    init:function(data){
         $('#admin_nav a').click(function (e) {
             e.preventDefault();
             $(this).tab('show');
         })
+        debugger;
+        $("#"+data.params.typeId).tab("show");
+        console.dir(data);
+        $("#common_panal").on("hidden",function(){
+            $("#admin_common_menu").val("");
+        });
+        $("#common_panal.closed").unbind("click").bind("click",function(){
+            $("#common_panal").modal("hide");
+        });
+        $(".admin_common_add").unbind("click").bind("click",function(){
+            $("#btn_admin_submit").unbind("click").bind("click",function(){
+                var name = $("#admin_common_menu").val();
+                var typeId = $("#admin_nav .active a").attr("id");
+                var obj = {
+                    name_str:name,
+                    typeId:typeId
+                };
+                Nenglong.Ajax.PostData("./menu/add",{data:JSON.stringify(obj)},function(){
+                    NengLongTemplateLoad({
+                        app:"index",
+                        cmd:"admin",
+                        params:{
+                            typeId:typeId
+                        }
+                    });
+                })
+            });
+        })
+        $("#common .admin_common_remove").unbind("click").bind("click",function(){
+            var mid = $(this).parent().parent("tr").attr("mid");
+            var typeId =  $("#admin_nav .active a").attr("id");
+            Nenglong.Ajax.GetData("./menu/remove",{
+                id:mid
+            },function(){
+                NengLongTemplateLoad({
+                    app:"index",
+                    cmd:"admin",
+                    params:{
+                        typeId:typeId
+                    }
+                });
+            });
+        })
+        $(".admin_home").unbind("click").bind("click",function(){
+            NengLongTemplateLoad({
+                app:"index",
+                cmd:"init"
+            })
+        });
+        $("#common .admin_common_update").unbind("click").bind("click",function(){
+            var typeId = $("#admin_nav .active a").attr("id");
+            var mid = $(this).parent().parent("tr").attr("mid");
+            var temp =  $("tr[mid="+mid+"] td.admin_common_itemname").text();
+            $("#admin_common_menu").val(temp);
+            $("#btn_admin_submit").unbind("click").bind("click",function(){
+                var name = $("#admin_common_menu").val();
+                var obj = {
+                    id:mid,
+                    name_str:name
+                };
+                Nenglong.Ajax.GetData("./menu/update",obj,function(){
+                    NengLongTemplateLoad({
+                        app:"index",
+                        cmd:"admin",
+                        params:{
+                            typeId:typeId
+                        }
+                    });
+                })
+            });
+        });
     }
 };
 

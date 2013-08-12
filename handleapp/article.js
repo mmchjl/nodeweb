@@ -224,6 +224,7 @@ var _handler = {
         header.session.session[temp] = true;
     },
     admin:function(header,response){
+        var typeId = header.get("typeId");
         var opt={
             collection:app.opt.collection,
             query:{},
@@ -246,7 +247,8 @@ var _handler = {
                 life:[],
                 interst:[],
                 common:[]
-            }
+            },
+            type:typeId
         };
         mongo.query(opt,function(err,data){
             if(err){
@@ -263,8 +265,21 @@ var _handler = {
                     result.data.interst.push(t);
                 }
             }
-
-            response.endJson(result);
+            mongo.query({
+                collection:"menu",
+                query:{}
+            },function(err,data){
+                if(err){
+                    utility.handleException(err);
+                    return response.endJson({result:false})
+                }
+                for(var i = 0;i<data.list.length;i++){
+                    var temp = data.list[i];
+                    result.data.common.push(temp);
+                }
+                response.endJson(result)
+            })
+            //response.endJson(result);
         })
     },
     "admin.isAuth":false

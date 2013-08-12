@@ -308,3 +308,9 @@ body{
 .blog_home_seft{
     font-family: museo-slab,"Helvetica Neue",Helvetica,Arial,sans-serif;
 }
+.admin_home{
+    position: relative;
+    float: left;
+    bottom: 50px;
+    cursor: pointer;
+}

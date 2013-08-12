@@ -9,6 +9,7 @@ var mongo = require("./lib/mongodb.js"),
     blog=require("./handleapp/blog.js"),
     article=require("./handleapp/article.js"),
     file = require("./handleapp/file.js"),
+    menu = require("./handleapp/menu.js"),
     authorization = require("./handleapp/authorization.js");
 
 function handle(header,response){
@@ -49,6 +50,9 @@ function handle(header,response){
             break;
         case "/file":
             file.handle(header,response);
+            break;
+        case "/menu":
+            menu.handle(header,response);
             break;
         case "/authorization":
             authorization.handle(header,response);
