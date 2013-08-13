@@ -34,8 +34,7 @@ init={
                 app:"index",
                 cmd:"main",
                 params:{
-                    "list.type_int":type,
-                    he:"hesef"+type
+                    "list.type_int":type
                 }
             });
         });
@@ -172,7 +171,16 @@ circle = {
                     updateTime_date:(new Date()).getTime()
                 };
                 Nenglong.Ajax.PostData("./article/add",{data:JSON.stringify(obj)},function(data){
-                    console.dir(data);
+                    NengLongTemplateLoad({
+                        app:"index",
+                        cmd:"init",
+                        params:{
+                            "routeChange":{
+                                home:"main"
+                            },
+                            "main.list.type_int":type
+                        }
+                    });
                 },function(){
                     console.log("请求失败");
                 })
@@ -329,9 +337,7 @@ admin = {
             e.preventDefault();
             $(this).tab('show');
         })
-        debugger;
         $("#"+data.params.typeId).tab("show");
-        console.dir(data);
         $("#common_panal").on("hidden",function(){
             $("#admin_common_menu").val("");
         });
@@ -399,6 +405,30 @@ admin = {
                     });
                 })
             });
+        });
+        $(".admin_add").unbind("click").bind("click",function(){
+            NengLongTemplateLoad({
+                app:"index",
+                cmd:"circle"
+            });
+        });
+        $(".delete").unbind("click").bind("click",function(){
+            var id = $(this).parent().parent().attr("tid");
+            var typeId = $("#admin_nav .active a").attr("id");
+            if(id){
+                Nenglong.Ajax.GetData("./article/remove",{id:id},function(){
+                    NengLongTemplateLoad({
+                        app:"index",
+                        cmd:"admin",
+                        params:{
+                            typeId:typeId
+                        }
+                    });
+                },function(){})
+            }
+        });
+        $(".update").unbind("click").bind("click",function(){
+            var id = $(this).parent().parent().attr("tid");
         });
     }
 };

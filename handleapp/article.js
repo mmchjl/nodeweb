@@ -282,7 +282,50 @@ var _handler = {
             //response.endJson(result);
         })
     },
-    "admin.isAuth":true
+    "admin.isAuth":true,
+    remove:function(header,response){
+        var id = header.get("id");
+        if(!id) return response.endJson({result:false,code:500})
+        var opt = {
+            collection:app.opt.collection,
+            query:{
+                _id:id
+            }
+        };
+        mongo.remove(opt,function(err,data){
+            if(err){
+                utility.handleException(err);
+                return response.endJson({result:false,code:500});
+            }
+            return response.endJson({result:true,code:200});
+        })
+    },
+    "remove.isAuth":true,
+    detailwithoutcomment:function(header,response){
+        var opt = {
+            collection:app.opt.collection,
+            query:{
+                _id:header.get("id")
+            },
+            fields:{
+                _id:1,
+                title_str:1,
+                commonts:-1,
+                content_str:1,
+                tags:1,
+                type_int:1
+            }
+        };
+        mongo.findOne(opt,function(err,data){
+            if(err){
+                utility.handleException(err);
+                return response.endJson({result:false,data:null})
+            }
+            if(utility.isNull(data)) return response.endJson({result:false});
+            data.result = true;
+            response.endJson(data);
+        })
+    }
 };
 
 var app = new handleBase("article",_handler);

@@ -774,9 +774,13 @@ NengLongTemplate.prototype.templateProcess = function(options, data, contents) {
         var domList = $("[template=true][load=true]", contents[i]).toArray();
         //debugger;
         var pros = Object.keys(options.params);
-        if(pros.length>0&&pros.Exists(function(obj){return obj.indexOf(".")})){
+        if(pros.length>0&&pros.Exists(function(obj){return obj.indexOf(".")!=-1})){
             for (var j = 0; j < domList.length; j++) {
                 var opt = getDomAppAndCmd(domList[j]);
+                if(options.params.routeChange){
+                    opt.cmd = options.params.routeChange[opt.cmd];
+                    delete options.params.routeChange;
+                }
                 var Npros = pros.FindAll(function(obj){return obj.indexOf(opt.cmd)!=-1});
                 if(Npros&&Npros.length>0){
                     for(var n=0;n<Npros.length;n++){
@@ -792,7 +796,12 @@ NengLongTemplate.prototype.templateProcess = function(options, data, contents) {
             }
         }else{
             for (var j = 0; j < domList.length; j++) {
-                this.load(getDomAppAndCmd(domList[j]));
+                var opt = getDomAppAndCmd(domList[j]);
+                if(options.params.routeChange){
+                    opt.cmd = options.params.routeChange[opt.cmd];
+                    delete options.params.routeChange;
+                }
+                this.load(opt);
             }
         }
     };
