@@ -13,6 +13,9 @@ init={
                 }
             }
         };
+        if($.cookies.get("iol")){
+            $("#admin").show();
+        }
         $("a.about").unbind("click").bind("click",function(){
             NengLongTemplateLoad({
                 app:"index",
@@ -45,17 +48,17 @@ init={
             var pwd = $("#loginPassword").val();
             Nenglong.Ajax.PostData("./authorization/login",{account:acc,password:pwd},function(){
                 $("#loginPanel").modal("hide");
-                $("#index_nav").append("<li id='admin'><a href='javascript:;' class=''>admin</a></li>");
-                $("#admin").unbind("click").bind("click",function(){
-                    NengLongTemplateLoad({
-                        app:"index",
-                        cmd:"admin",
-                        params:{
-                            typeId:"type1"
-                        }
-                    });
-                });
+                $("#admin").show();
             })
+        });
+        $("#admin").unbind("click").bind("click",function(){
+            NengLongTemplateLoad({
+                app:"index",
+                cmd:"admin",
+                params:{
+                    typeId:"type1"
+                }
+            });
         });
     }
 };

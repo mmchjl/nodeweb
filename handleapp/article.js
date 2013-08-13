@@ -282,7 +282,7 @@ var _handler = {
             //response.endJson(result);
         })
     },
-    "admin.isAuth":false
+    "admin.isAuth":true
 };
 
 var app = new handleBase("article",_handler);

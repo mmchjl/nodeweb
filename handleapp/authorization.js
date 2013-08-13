@@ -28,12 +28,14 @@ var _handler = {
         })*/
         var uid = header.fields.account;
         var pwd = header.fields.password;
-        console.dir({
-            uid:uid,
-            pwd:utility.MD5(pwd)
-        });
-        header.session.session.authorization = true;
-        response.endJson({result:true});
+        if(uid="mmchjl"&&pwd=="123"){
+            response.setCookie({
+                name:"iol",
+                value:utility.Guid()
+            })
+            header.session.session.authorization = true;
+            response.endJson({result:true});
+        }
     },
     check:function(header,response){
         var account = header.queryString.account;
