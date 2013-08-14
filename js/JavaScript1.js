@@ -130,7 +130,7 @@ blogType = {
 
 Namespace.Register("circle");
 circle = {
-    init:function(){
+    init:function(option,data){
             editor1 = KindEditor.create('#content', {
                 cssPath : './css/prettify.css',
                 uploadJson : './file/uploadimg',
@@ -140,16 +140,21 @@ circle = {
                     var self = this;
                 }
             });
+            if(data){
+                var t = G_Template_Params.currentPath.data.content_str;
+                editor1.html(t);
+            }
             $("#btn_badge").unbind("click").bind("click",function(){
                 var _new = $("#txt_badge").val().Trim();
                 if(_new){
                    $("#badges").append("<span class='badge badge-info mbadge'>"+_new+"</span>");
                 }
-                $("span.mbadge").unbind("dblclick").bind("dblclick",function(){
-                    $(this).remove();
-                })
             });
+            $("span.mbadge").die("dblclick").live("dblclick",function(){
+                $(this).remove();
+            })
             $("#btn_submit").unbind("click").bind("click",function(){
+                var id =  $("#txt_title").attr("aid")||0;
                 var title = $("#txt_title").val();
                 var type=$("#sel_type").val();
                 var badges = [];
@@ -163,6 +168,7 @@ circle = {
                     return;
                 }
                 var obj={
+                    id:id,
                     title_str:title,
                     tags:badges,
                     content_str:content,
@@ -184,6 +190,12 @@ circle = {
                 },function(){
                     console.log("请求失败");
                 })
+            });
+            $("#circle_back").unbind("click").bind("click",function(){
+                var arr = $("#body").data("prevOptions");
+                if(arr&&arr[arr.length-2]){
+                    NengLongTemplateLoad(arr[arr.length-2]);
+                }
             });
     }
 };
@@ -429,6 +441,13 @@ admin = {
         });
         $(".update").unbind("click").bind("click",function(){
             var id = $(this).parent().parent().attr("tid");
+            NengLongTemplateLoad({
+                app:"index",
+                cmd:"circle",
+                params:{
+                    id:id
+                }
+            });
         });
     }
 };
