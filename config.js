@@ -49,9 +49,12 @@ var forbiden =[
     "/server.js"
 ];
 
-var mongo_config = {
+var mongodb_config = {
+    username:"",
+    password:"",
     server:"127.0.0.1",
-    port:27017
+    port:27017,
+    dbname:"test"
 };
 
 var redis_config = {
@@ -92,8 +95,8 @@ var statuCode={
 module.exports.config = {
     mime:mime,
     forbiden:forbiden,
-    c_mongo:mongo_config,
-    c_redis:redis_config,
+    mongodb:mongodb_config,
+    redis:redis_config,
     runtime:runtime,
     language:language
 }
