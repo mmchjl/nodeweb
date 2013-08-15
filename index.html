@@ -54,9 +54,9 @@
                 cmd:"circle",
                 content:"body",
                 templateUrl:"./template/circle.htm",
-                dataUrl:"./monitor/requeststate",
-                onload:function(){
-                    circle.init();
+                dataUrl:"./article/detailwithoutcomment",
+                onload:function(option,data){
+                    circle.init(option,data);
                 }
             },
             blogType:{

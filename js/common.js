@@ -236,3 +236,13 @@ Array.prototype.Each = function(fun) {
         fun(this[i]);
     }
 };
+
+if(!Object.keys){
+    Object.keys = function(obj){
+        var arr=[];
+        for(var i in obj){
+            arr.push(i);
+        }
+        return arr;
+    }
+}

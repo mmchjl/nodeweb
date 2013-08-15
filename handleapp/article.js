@@ -38,14 +38,26 @@ var _handler = {
             newObject:newobject
         }
         console.dir(option);
-        mongo.insert(option,function(err,data){
-            if(err){
-                utility.handleException(err);
-                return response.endJson({result:false,data:{code:500}});
-            }
-            response.endJson({result:true,data:{code:200}});
-            console.dir(data);
-        });
+        if(t.id!=0){
+            option.query._id= t.id;
+            mongo.update(option,function(err,data){
+                if(err){
+                    utility.handleException(err);
+                    return response.endJson({result:false,data:{code:500}});
+                }
+                response.endJson({result:true,data:{code:200}});
+                console.dir(data);
+            });
+        }else{
+            mongo.insert(option,function(err,data){
+                if(err){
+                    utility.handleException(err);
+                    return response.endJson({result:false,data:{code:500}});
+                }
+                response.endJson({result:true,data:{code:200}});
+                console.dir(data);
+            });
+        }
     },
     "add.isAuth":true,
     getlist:function(header,response){
@@ -318,7 +330,8 @@ var _handler = {
                 commonts:-1,
                 content_str:1,
                 tags:1,
-                type_int:1
+                type_int:1,
+                synopsis_str:1
             }
         };
         mongo.findOne(opt,function(err,data){
