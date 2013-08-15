@@ -71,7 +71,9 @@ var _handler = {
         var opt={
             collection:"article",
             query:{},
-            fields:{_id:1,title_str:1,views:1,"comments.commentId":1}
+            fields:{_id:1,title_str:1,views:1,"comments.commentId":1},
+            sort:[["updateTime_date",-1]],
+            pageSize:5
         };
         mongo.query(opt,function(err,data){
             if(err){
@@ -118,7 +120,7 @@ var _handler = {
             if(err){
                 utility.handleException(err);
                 return response.endJson({
-                    result:false,
+                    result:false
                 })
             }
             if(data){
@@ -181,6 +183,9 @@ var _handler = {
                 $push:{
                     comments:
                     temp
+                },
+                $set:{
+                    updateTime_date:(new Date()).getTime()
                 }
             }
         }
