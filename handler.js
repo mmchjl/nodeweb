@@ -12,6 +12,25 @@ var mongo = require("./lib/mongodb.js"),
     menu = require("./handleapp/menu.js"),
     authorization = require("./handleapp/authorization.js");
 
+var handlers = {};
+
+(function(){
+    var appPath = "./handleapp";
+    var extname = ".js";
+    fs.readdir(appPath,function(err,files){
+        if(err){
+            return utility.handleException(err);
+        }
+        files.forEach(function(file){
+            var filename = path.basename(file);
+            var modulename = path.basename(file,extname);
+            var filepath = appPath+"/"+filename;
+            handlers[modulename] = require(filepath);
+        })
+        console.dir(handlers);
+    })
+})();
+
 function handle(header,response){
 	var handler = header.handler.toLowerCase();
 	if(header.path=="/") {
@@ -19,48 +38,11 @@ function handle(header,response){
 			header.extname="html";
 			header._extname=".html";
 		}
-    //console.log("当前请求的ID："+header.session.sessionId);
-    //是否开启验证
-    if(configuration.config.runtime.isauth&&!header.auth){
-        var noauth = "no authority";
-        response.writeHead(200,{
-            "Content-Type":"text/plain",
-            "Content-Length":Buffer.byteLength(noauth)
-        });
-        response.end(noauth);
-        return;
+    if(handlers[handler]){
+        handlers[handler].handle(header,response);
+    }else{
+        defaultHandler.handle(header,response);
     }
-
-	switch(handler)
-	{
-		case "/cantine":
-            cantine.handle(header,response);
-            break;
-        case "/monitor":
-            monitor.handle(header,response);
-            break;
-       case "/captcha":
-           captcha.handle(header,response);
-            break;
-        case "/blog":
-            blog.handle(header,response);
-            break;
-        case "/article":
-            article.handle(header,response);
-            break;
-        case "/file":
-            file.handle(header,response);
-            break;
-        case "/menu":
-            menu.handle(header,response);
-            break;
-        case "/authorization":
-            authorization.handle(header,response);
-            break;
-		default:
-		defaultHandler.handle(header,response);
-		break;
-	}
     session.setSession(header.session);
     //是否开启统计
     if(true){

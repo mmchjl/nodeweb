@@ -9,7 +9,7 @@
 var mongo  = require("../lib/mongoClient.js"),
     fs = require("fs"),
     path = require("path"),
-    handleBase = require("./handleAppBase.js").handleBase;
+    handleBase = require("./../lib/handleAppBase.js").handleBase;
 
 var _handler = {
     uploadimg:function(header,response){

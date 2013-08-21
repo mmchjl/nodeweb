@@ -9,7 +9,7 @@ var mongo = require("../lib/mongoClient.js"),
     //cap = require("../lib/captcha.js"),
     fs = require("fs"),
     edge = require('edge'),
-    handleBase = require("./handleAppBase.js").handleBase;
+    handleBase = require("./../lib/handleAppBase.js").handleBase;
 
 var _handler = {
     getlist:function(header,response){

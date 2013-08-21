@@ -14,7 +14,7 @@ function route(request,response){
     if(request.method=="POST"){
         var form =new formidable.IncomingForm();
         form.parse(request,function(err,fields,files){
-            if(err) utility.handleException(err);  form.uploadDir
+            if(err) utility.handleException(err);
             request.fields = fields;
             request.files = files;
             var _header = new header(request,response);
@@ -50,7 +50,7 @@ function header(request,response){
 	this.queryString = this.rawUrl.indexOf("?")>0?querystring.parse(this.rawUrl.split("?")[1]):{};
     this.tempUrl = url.parse(this.rawUrl,true);
 	this.method = request.method;
-	this.handler = path.dirname(this.tempUrl.pathname);
+	this.handler = path.dirname(this.tempUrl.pathname).slice(1);
     this.action = path.basename(this.tempUrl.pathname);
 	this.baseName = path.basename(this.path);
 	this._extname = path.extname(this.baseName);

@@ -7,7 +7,7 @@
  */
 
 var mongo = require("../lib/mongoClient.js"),
-    handleBase = require("./handleAppBase.js").handleBase;
+    handleBase = require("./../lib/handleAppBase.js").handleBase;
 
 var _handle = {
     add:function(header,response){
