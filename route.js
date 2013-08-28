@@ -131,6 +131,14 @@ header.prototype.get = function(name){
     }
 }
 
+header.prototype.setSession = function (key, value) {
+    if (typeof value == "object") {
+        value = JSON.stringify(value);
+    }
+    this.session[key] = value;
+    session.setSession(this.session)
+}
+
 header.prototype.destroy=function(){
 
 }

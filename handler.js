@@ -43,7 +43,7 @@ function handle(header,response){
     }else{
         defaultHandler.handle(header,response);
     }
-    session.setSession(header.session);
+    //session.setSession(header.session);
     //是否开启统计
     if(true){
         var opt = {

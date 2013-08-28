@@ -238,7 +238,8 @@ var _handler = {
             }
             return response.endJson({result:true})
         });
-        header.session.session[temp] = true;
+		header.setSession(temp,true);
+        //header.session.session[temp] = true;
     },
     admin:function(header,response){
         var typeId = header.get("typeId");
