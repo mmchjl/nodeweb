@@ -314,3 +314,8 @@ body{
     bottom: 50px;
     cursor: pointer;
 }
+
+.refcommentshow{
+    width:80%;
+    margin-left:20px
+}

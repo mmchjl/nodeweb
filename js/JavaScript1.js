@@ -280,7 +280,26 @@ detail = {
             },function(){
                 alert("服务器错误");
             })
-        })
+        });
+        $(".btn_reply").unbind("click").bind("click",function(){
+            var $div = $(this).parent();
+            var refCommentId = $div.attr("refcommentid");
+            var commentData = $(".replytext",$div).val();
+            var id = $div.attr("aid");
+            var obj = {
+                id:id,
+                commentId: Guid("N"),
+                comment_str:commentData,
+                addDate_date:(new Date()).getTime(),
+                refCommentId:refCommentId
+            };
+            Nenglong.Ajax.PostData("./article/comment",{data:JSON.stringify(obj)},function(){
+                NengLongTemplateReload();
+            },function(){
+                alert("fail to comment")
+            });
+            console.dir(obj);
+        });
     }
 }
 
