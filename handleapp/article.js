@@ -174,6 +174,19 @@ var _handler = {
                     }
                     if(utility.isNull(data)) return response.endJson({result:false});
                     data.result = true;
+                    if(data.comments){
+                        var articlrComments = data.comments.filter(function(obj){
+                            return utility.isUndefined(obj.refCommentId);
+                        });
+                        articlrComments.forEach(function(obj){
+                            if(!obj.refComments) obj.refComments=[];
+                            data.comments.forEach(function(_obj){
+                                if(_obj.refCommentId&&_obj.refCommentId==obj.commentId) obj.refComments.push(_obj);
+                            })
+                            obj.refComments.sort(function(a,b){return a.addDate_date> b.addDate_date?1:-1; });
+                        });
+                        data.comments = articlrComments;
+                    }
                     response.endJson(data);
                 })
             }

@@ -25,6 +25,18 @@
                             <a class="reply" href="javascript:;">回复</a>
                         </div>
                         <div class="neirong"> <p>{$T.comments[$T.i-1].comment_str}</p></div>
+                <div class="refcommentshow">
+                    {#for j=1 to $T.comments[$T.i-1].refComments.length}
+                    <div  >
+                        <div class="author">
+                            <span class="author_nickname">匿名</span>
+                            <span class="comment_time">{ new Date($T.comments[$T.i-1].refComments[$T.j-1].addDate_date).format("MM月dd号 hh:mm:ss")}</span>
+                        </div>
+                        <div class="neirong"> <p>{$T.comments[$T.i-1].refComments[$T.j-1].comment_str}</p></div>
+                    </div>
+                    {#/for}
+                </div>
+
                         <div class="comments-thumbs">
                             <i title="赞成" articleId="{$T._id}" class="icon-thumbs-up up thumb">
                                 {#if $T.comments[$T.i-1].yes}{$T.comments[$T.i-1].yes}{#else}0{#/if}
@@ -34,7 +46,9 @@
                             </i>
                         </div>
                     </div>
-                    <div {#if $T.comments[$T.i-1].commentId}refCommentId="{$T.comments[$T.i-1].commentId}"{#/if} class="replypanel">
+
+
+                    <div {#if $T.comments[$T.i-1].commentId}refCommentId="{$T.comments[$T.i-1].commentId}"{#/if} aid="{$T._id}" class="replypanel">
                         <textarea class="replytext" id="" cols="30" rows="10"></textarea> <br/>
                         <input type="button" class="btn btn-primary btn_reply" value="回复"/>
                     </div>
